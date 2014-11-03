@@ -1,16 +1,18 @@
 # require "patlite/version"
 
 require 'sinatra'
+require 'sinatra/reloader'
 require 'haml'
 require './patlite/led'
 require './patlite/jsay'
 
   get '/' do
-    # haml :index
+    haml :index
   end
 
   get '/flash' do
     Patlite::Led.flash
+    haml :index
   end
 
   get '/say' do
@@ -19,14 +21,16 @@ require './patlite/jsay'
     else
       Patlite::Jsay.say params[:message]
     end
+    haml :index
   end
 
   get '/alert' do
     Patlite::Led.flash
     Patlite::Jsay.say params[:message]
     Patlite::Led.flash
-  end
-
-  after do
     haml :index
   end
+
+  # after do
+  #   haml :index
+  # end
