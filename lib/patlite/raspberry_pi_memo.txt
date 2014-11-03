@@ -1,0 +1,59 @@
+wget http://downloads.sourceforge.net/project/mmdagent/MMDAgent_Example/MMDAgent_Example-1.4/MMDAgent_Example-1.4.zip
+unzip MMDAgent_Example-1.4.zip
+sudo cp -R MMDAgent_Example-1.4/Voice/* /usr/share/hts-voice/
+
+
+wget http://downloads.sourceforge.net/project/mmdagent/MMDAgent_Example/MMDAgent_Example-1.3/MMDAgent_Example-1.3.zip
+unzip MMDAgent_Example-1.3.zip
+sudo cp -R MMDAgent_Example-1.3/Voice/* /usr/share/hts-voice/
+
+curl "https://api.voicetext.jp/v1/tts" \
+     -u "dzywbs4umvr3uw60:" \
+     -d "text=おはようございます" \
+     -d "speaker=show" | aplay -
+
+コチョナナバ: Raspberry Piで音声合成してしゃべらせてみる http://kingyo-bachi.blogspot.jp/2014/09/raspberry-pi_25.html
+橋本商会 ? Raspberry Piに喋らせる http://shokai.org/blog/archives/6893
+
+Raspberry Pi | Wiring | Pins | Gordons Projects https://projects.drogon.net/raspberry-pi/wiringpi/pins/
+
+Raspberry Pi でUSBスピーカーを動かす - それマグで！ http://takuya-1st.hatenablog.jp/entry/2014/06/15/180632
+
+GPIO MAX 16mA
+all 50mA
+
+5mA
+
+SLP-9118C-51H
+(3.3-1.85)/0.005=296
+
+OSTA-5131A
+LEDの使い方（点灯のさせ方）を教えてください。 :: エレキット・ウェブ・ワールド http://www.elekit.co.jp/support/faq/detail/product/00192
+
+(5.0-2.0)/0.005=600
+(5.0-3.6)/0.005=280
+
+
+
+よく使う電子部品を揃えておく - お父さんの電子工作 http://daddyengineer.hatenablog.com/entry/2014/05/25/190000
+最小限の抵抗を揃えるのであれば、10,100,1k,10k,100k,1Mの6種類。
+もう少し増やしていいのであれば、22と47を入れて、10, 22, 47, 100, 220, 470, 1k, 2.2k, 4.7k, 10k, 22K, 47k, 100k, 220k, 470k, 1M, 2.2M, 4.7Mの18種類です。
+一般的な電子工作でよく使う抵抗の値を教えてください。 - Yahoo!知恵袋 http://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q1273468397
+カーボン抵抗１／４Ｗ
+
+ＥＲＤ－２５ＴのＥ６系列
+
+６√１０、、１：１．５：２．２：３．３：４．７：６．８
+
+３３０Ωと４．７ｋはよく使いました
+
+Class: WiringPi::GPIO http://ruby-doc.org/gems/docs/w/wiringpi2-2.0.1/WiringPi/GPIO.html
+
+
+Sinatraで簡易APIサーバーを作ってみた ｜ Developers.IO http://dev.classmethod.jp/server-side/ruby-on-rails/sinatra__make_api_server/
+
+[Ruby]ruby 2.0.0 + sinatraで LAN内の他コンピュータからアクセスできない | iPhoneAppはじめました http://blog.o24.me/?p=384
+
+Raspberry Piで温度センサー。部屋の気温を取得しよう - Raspberry Pi 電子工作 http://lchikaamazon.hatenablog.com/entry/2013/12/23/184223
+
+Raspberry PiへRuby 2.0を入れる - 河童＠漂流中 http://d.hatena.ne.jp/kappaseijin/20140211/1392106554

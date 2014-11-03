@@ -1,5 +1,3 @@
-require "patlite/version"
-
 require 'sinatra'
 require './patlite/led'
 require './patlite/jsay'
@@ -13,6 +11,7 @@ require './patlite/jsay'
   end
 
   get '/say' do
+    p params
     if params[:voice] == "show"
       Patlite::Jsay.say_show params[:message]
     else
