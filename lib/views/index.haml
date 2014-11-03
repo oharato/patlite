@@ -1,3 +1,5 @@
 %h1 Raspberry Piでパトランプ
-%a{href: "/flash") Flash
-%form{action: "/say", method: "get"}
+%a{:href => "/flash") Flash
+%form{:action => "/say", :method => "get"}
+  %input{:type => "text", :name => "message"}
+  %input{:type => "submit", :value => "send"}

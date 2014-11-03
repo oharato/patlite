@@ -1,6 +1,7 @@
 # require "patlite/version"
 
 require 'sinatra'
+require 'haml'
 require './patlite/led'
 require './patlite/jsay'
 
