@@ -1,4 +1,4 @@
-require "patlite/version"
+# require "patlite/version"
 
 require 'sinatra'
 require './patlite/led'
@@ -25,4 +25,3 @@ require './patlite/jsay'
     Patlite::Jsay.say params[:message]
     Patlite::Led.flash
   end
-#hoge
