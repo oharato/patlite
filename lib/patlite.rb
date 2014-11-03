@@ -6,7 +6,7 @@ require './patlite/led'
 require './patlite/jsay'
 
   get '/' do
-    haml :index
+    # haml :index
   end
 
   get '/flash' do
@@ -25,4 +25,8 @@ require './patlite/jsay'
     Patlite::Led.flash
     Patlite::Jsay.say params[:message]
     Patlite::Led.flash
+  end
+
+  after do
+    haml :index
   end
