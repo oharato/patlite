@@ -25,3 +25,4 @@ require './patlite/jsay'
     Patlite::Jsay.say params[:message]
     Patlite::Led.flash
   end
+#hoge
