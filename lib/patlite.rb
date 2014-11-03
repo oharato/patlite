@@ -5,7 +5,7 @@ require './patlite/led'
 require './patlite/jsay'
 
   get '/' do
-    'hoge'
+    haml :index
   end
 
   get '/flash' do
