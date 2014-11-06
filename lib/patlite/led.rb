@@ -1,4 +1,5 @@
 require 'wiringpi2'
+require "colorable"
 
 module Patlite
   class Led
@@ -26,6 +27,30 @@ module Patlite
 
         end
       end
+    end
+
+    def color
+      gpios = [7,0,4,3]
+      io = WiringPi::GPIO.new
+
+      gpios.each{|gpio| io.soft_pwm_create(gpio, 0, 255)}
+
+      color_name_to_flash(io, 'Blue')
+      color_name_to_flash(io, 'Green')
+      color_name_to_flash(io, 'Yellow')
+      color_name_to_flash(io, 'Red')
+      color_name_to_flash(io, 'Brown')
+      color_name_to_flash(io, 'Purple')
+      color_name_to_flash(io, 'Orange')
+    end
+
+    def color_name_to_flash(io, color_name)
+      c = color_name.to_color.rgb
+      0..2.each do |i|
+        io.soft_pwm_write(gpios[i], c[i])
+      end
+      sleep 1
+
     end
   end
 end
