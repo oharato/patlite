@@ -29,11 +29,11 @@ module Patlite
       end
     end
 
+    @gpios = [7,0,4,3]
     def self.color
-      gpios = [7,0,4,3]
       io = WiringPi::GPIO.new
 
-      gpios.each{|gpio| io.soft_pwm_create(gpio, 0, 255)}
+      @gpios.each{|gpio| io.soft_pwm_create(gpio, 0, 255)}
 
       color_name_to_flash(io, 'Blue')
       color_name_to_flash(io, 'Green')
@@ -47,7 +47,7 @@ module Patlite
     def self.color_name_to_flash(io, color_name)
       c = color_name.to_color.rgb
       (0..2).each do |i|
-        io.soft_pwm_write(gpios[i], c[i])
+        io.soft_pwm_write(@gpios[i], c[i])
       end
       sleep 1
 
