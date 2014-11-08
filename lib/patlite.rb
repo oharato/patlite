@@ -25,9 +25,9 @@ require './patlite/jsay'
   end
 
   get '/alert' do
-    Patlite::Led.flash
+    # Patlite::Led.flash
     Patlite::Jsay.say params[:message]
-    Patlite::Led.flash
+    # Patlite::Led.flash
     haml :index
   end
 

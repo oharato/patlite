@@ -1,10 +1,10 @@
 %h1 Raspberry Piでパトランプ
 %a.btn.btn-primary{href: "/flash"}
   Flash
-  span.glyphicon.glyphicon-star-empty
+  %span.glyphicon.glyphicon-star-empty
 %hr
 %form{action: "/say", method: "get"}
   .form-group
     %label{for: "message"} メッセージ
-    %textarea#memo.form-control{ rows: 5, placeholder: "メッセージを入力してください" name: "message"}
+    %textarea#memo.form-control{ rows: 5, placeholder: "メッセージを入力してください", name: "message"}
   %input.btn.btn-primary{type: "submit", value: "send"}
