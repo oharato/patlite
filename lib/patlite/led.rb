@@ -29,7 +29,7 @@ module Patlite
       end
     end
 
-    def color
+    def self.color
       gpios = [7,0,4,3]
       io = WiringPi::GPIO.new
 
@@ -44,7 +44,7 @@ module Patlite
       color_name_to_flash(io, 'Orange')
     end
 
-    def color_name_to_flash(io, color_name)
+    def self.color_name_to_flash(io, color_name)
       c = color_name.to_color.rgb
       0..2.each do |i|
         io.soft_pwm_write(gpios[i], c[i])
