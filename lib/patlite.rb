@@ -15,6 +15,11 @@ require './patlite/jsay'
     haml :index
   end
 
+  get '/color' do
+    Patlite::Led.color
+    haml :index
+  end
+
   get '/say' do
     if params[:voice] == "show"
       Patlite::Jsay.say_show params[:message]
