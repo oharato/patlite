@@ -42,6 +42,7 @@ module Patlite
       color_name_to_flash(io, 'Brown')
       color_name_to_flash(io, 'Purple')
       color_name_to_flash(io, 'Orange')
+      @gpios.each{|gpio| io.soft_pwm_write(gpio, 0)}
     end
 
     def self.color_name_to_flash(io, color_name)
