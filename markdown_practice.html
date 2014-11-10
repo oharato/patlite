@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="ja">
+<html lang="en">
 
 	<head>
 		<meta charset="utf-8">
 
-		<title>raspberry piでパトランプを作ってみた</title>
+		<title>reveal.js - The HTML Presentation Framework</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Hakim El Hattab">
@@ -46,18 +46,68 @@
             data-separator="\n---\n$"
             data-vertical="\n--\n">
             <script type="text/template">
-#Patlite
+
+#Markdownの練習
+pは１行以上の空行
+
+あああああああああああああああ
+
+1. Item 1
+  1. A corollary to the above item.
+  2. Yet another point to consider.
+2. Item 2
+  * A corollary that does not need to be ordered.
+    * This is indented four spaces, because it's two spaces further than the item above.
+    * You might want to consider making a new list.
+3. Item 3
 
 ---
 
-#Sample
+#h1h1h1
+##h2h2h2
 
-- http://oharato.github.io/patlite/markdown_practice.html
-- http://oharato.github.io/patlite/index_org.html
+http://example.com
+
+~~Mistaken text.~~
+
+```
+function test() {
+  console.log("notice the blank line before this function?");
+}
+```
+
+---
+
+```ruby
+require 'redcarpet'
+markdown = Redcarpet.new("Hello World!")
+puts markdown.to_html
+```
+In the words of Abraham Lincoln:
+
+> Pardon my french
+
+*This text will be italic*
+**This text will be bold**
+
+---
+
+aaa
+
+[Visit GitHub!](www.github.com)
+
+`![代替テキスト](画像のURL "画像タイトル")`
+
+Markdown: ![Qiita](http://qiita.com/icons/favicons/public/apple-touch-icon.png "Qiita")
+
+---
+
+![GREEN](img/green.jpg "green")
 
 ---
 
 #END
+
             </script>
         </sectin>
 
