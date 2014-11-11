@@ -1,35 +1,26 @@
 require 'wiringpi2'
-require "colorable"
+require 'colorable'
 
 module Patlite
   class Led
+    @gpios = [7,0,4,3]
+
     def self.flash
-      gpios = [7,0,4,3]
       io = WiringPi::GPIO.new
 
-      gpios.each{|gpio| io.pin_mode(gpio, WiringPi::OUTPUT)}
-      # gpios.each{|gpio| io.soft_pwm_create(gpio, 0, 100)}
+      @gpios.each{|gpio| io.pin_mode(gpio, WiringPi::OUTPUT)}
 
-      3.times do
-        gpios.each do |gpio|
+      10.times do
+        break unless $is_flash
+        @gpios.each do |gpio|
          io.digital_write(gpio, 1)
-         sleep 0.05
+         sleep 0.5
          io.digital_write(gpio, 0)
-         sleep 0.05
-          # (0..100).each do |x|
-          #   io.soft_pwm_write(gpio, x)
-          #   sleep(0.005)
-          # end
-          # (0..100).each do |x|
-          #   io.soft_pwm_write(gpio,(100 -x))
-          #   sleep(0.005)
-          # end
-
+         sleep 0.5
         end
       end
     end
 
-    @gpios = [7,0,4]
     def self.colorful
       io = WiringPi::GPIO.new
 
@@ -49,6 +40,7 @@ module Patlite
       sleep 1
       color_name_to_flash(io, 'Orange')
       sleep 1
+
       @gpios.each{|gpio| io.soft_pwm_write(gpio, 0)}
     end
 
@@ -66,7 +58,6 @@ module Patlite
       (0..2).each do |i|
         io.soft_pwm_write(@gpios[i], c[i])
       end
-
     end
   end
 end

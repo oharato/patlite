@@ -5,13 +5,22 @@ require 'sinatra/reloader'
 require 'haml'
 require './patlite/led'
 require './patlite/jsay'
+require 'thread'
+
+$is_flash = false
 
   get '/' do
     haml :index
   end
 
   get '/flash' do
+    $is_flash = true
     Patlite::Led.flash
+    haml :index
+  end
+
+  get '/stop' do
+    $is_flash = false
     haml :index
   end
 
@@ -30,9 +39,14 @@ require './patlite/jsay'
   end
 
   get '/alert' do
-    # Patlite::Led.flash
-    Patlite::Jsay.say params[:message]
-    # Patlite::Led.flash
+    t1 = Thread.new do
+      Patlite::Led.flash
+    end
+    t2 = Thread.new do
+
+    end
+    t1.join
+    t2.join
     haml :index
   end
 
