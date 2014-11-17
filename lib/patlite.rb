@@ -6,6 +6,7 @@ require 'sinatra/reloader'
 require 'haml'
 require './patlite/led'
 require './patlite/jsay'
+require './patlite/input'
 require 'thread'
 
 $is_flash = false
@@ -15,8 +16,15 @@ $is_flash = false
   end
 
   get '/flash' do
-    $is_flash = true
-    Patlite::Led.flash
+    t1 = Thread.new do
+      $is_flash = true
+      Patlite::Led.flash
+    end
+    t2 = Thread.new do
+      Patlite::Input.wait_input
+    end
+    t1.join
+    t2.join
     haml :index
   end
 
