@@ -46,6 +46,7 @@ $is_flash = false
 
   get '/alert' do
     t1 = Thread.new do
+      $is_flash = true
       Patlite::Led.flash
     end
     t2 = Thread.new do
