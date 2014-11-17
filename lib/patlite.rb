@@ -48,7 +48,9 @@ $is_flash = false
       Patlite::Led.flash
     end
     t2 = Thread.new do
-
+      3.times do
+        Patlite::Jsay.say "危険です！"
+      end
     end
     t1.join
     t2.join
