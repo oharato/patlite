@@ -3,7 +3,7 @@ require 'colorable'
 
 module Patlite
   class Led
-    @gpios = [7,0,4,3]
+    @gpios = [7,0,1]
 
     def self.flash
       io = WiringPi::GPIO.new
