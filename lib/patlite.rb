@@ -15,8 +15,13 @@ require './patlite/jsay'
     haml :index
   end
 
-  get '/color' do
-    Patlite::Led.color
+  get '/colorful' do
+    Patlite::Led.colorful
+    haml :index
+  end
+
+  get '/light' do
+    Patlite::Led.light params[:color]
     haml :index
   end
 
