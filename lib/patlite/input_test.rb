@@ -13,9 +13,11 @@ io.pull_up_dn_control(input_gpio, WiringPi::PUD_UP)
 
 # f = Proc.new {p "hoge"}
 while true
-  p 'hoge' if io.digital_read(input_gpio) == WiringPi::LOW
-  sleep 0.1
+  if io.digital_read(input_gpio) == WiringPi::LOW
+    p 'hoge'
+    sleep 0.2
   # io.wiringpi_isr(input_gpio, 1, f)
   # sleep 100
+  end
 end
 

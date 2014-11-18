@@ -15,7 +15,6 @@ module Patlite
           $is_flash = false
           break
         end
-        sleep 0.1
       end
 
     end
