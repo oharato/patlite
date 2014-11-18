@@ -57,3 +57,9 @@ Sinatraで簡易APIサーバーを作ってみた ｜ Developers.IO http://dev.c
 Raspberry Piで温度センサー。部屋の気温を取得しよう - Raspberry Pi 電子工作 http://lchikaamazon.hatenablog.com/entry/2013/12/23/184223
 
 Raspberry PiへRuby 2.0を入れる - 河童＠漂流中 http://d.hatena.ne.jp/kappaseijin/20140211/1392106554
+
+
+
+wiringPiISR
+GPIO接続のLCD表示 http://www7b.biglobe.ne.jp/~nopnop2002/GPIO-LCD-4.html
+がた老AVR研究所: Raspberry http://gataro-avr-ken.cocolog-nifty.com/blog/raspberry/index.html

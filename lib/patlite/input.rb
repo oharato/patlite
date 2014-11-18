@@ -8,12 +8,15 @@ module Patlite
       io = WiringPi::GPIO.new
 # http://www.rubydoc.info/gems/wiringpi2/2.0.1/WiringPi/GPIO#pull_up_dn_control-instance_method
       io.pin_mode(input_gpio, WiringPi::INPUT)
-      io.pull_up_dn_control(input_gpio, WiringPi::PUD_DOWN)
+      io.pull_up_dn_control(input_gpio, WiringPi::PUD_UP)
 
-      while io.read(input_gpio) == WiringPi::LOW
+      while true
+        if io.digital_read(input_gpio) == WiringPi::LOW
+          $is_flash = false
+          break
+        end
+        sleep 0.1
       end
-
-      $is_flash = false
 
     end
 
