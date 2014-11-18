@@ -8,6 +8,6 @@ io.pin_mode(input_gpio, WiringPi::INPUT)
 io.pull_up_dn_control(input_gpio, WiringPi::PUD_DOWN)
 
 while true
-  p 'hoge' if io.read(input_gpio) == WiringPi::LOW
+  p 'hoge' if io.digital_read(input_gpio) == WiringPi::LOW
   sleep 0.1
 end
