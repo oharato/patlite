@@ -58,6 +58,16 @@ Raspberry Piで温度センサー。部屋の気温を取得しよう - Raspberr
 
 Raspberry PiへRuby 2.0を入れる - 河童＠漂流中 http://d.hatena.ne.jp/kappaseijin/20140211/1392106554
 
+いでに、秋月電子で販売中の「OSTA-5131A」の場合には以下のようになります。
+
++6-VF/IV(20mA)
+Red : 2.0V/2000mcd
+Green : 3.6V/2500mcd
+Blue : 3.6V/7000mcd
+Red : ( 5 – 2 ) / 0.02 = 150Ω
+Green : ( 5 – 3.6 ) / ( ( 2000 / 2500 ) * 0.02 ) = 240Ω
+Blue : ( 5 – 3.6 ) / ( ( 2000 / 7000 ) * 0.02 ) = 91Ω
+※：電源電圧は5Vで計算
 
 
 wiringPiISR
