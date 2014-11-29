@@ -1,10 +1,6 @@
 require 'wiringpi2'
 
-# def p_hoge
-#   p 'hoge'
-# end
-
-input_gpio = 2
+input_gpio = 11
 
 io = WiringPi::GPIO.new
 # http://www.rubydoc.info/gems/wiringpi2/2.0.1/WiringPi/GPIO#pull_up_dn_control-instance_method
@@ -20,4 +16,3 @@ while true
   # sleep 100
   end
 end
-
