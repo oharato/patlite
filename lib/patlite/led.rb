@@ -4,7 +4,7 @@ require 'colorable'
 module Patlite
   class Led
     @gpios = [7,0,1]
-    @leds = [[7,0,1],[2,3,4],[21,22,23],[26,27,28]]
+    @leds = [[8,9,7],[0,2,3],[12,13,14],[15,16,1]]
 
     def self.flash
       io = WiringPi::GPIO.new
