@@ -32,19 +32,19 @@ module Patlite
         gpios.each{|gpio| io.soft_pwm_create(gpio, 0, 255)}
       end
 
-      color_name_to_flash(io, 'Blue')
+      color_name_to_flash(io, led1, 'Blue')
       sleep 1
-      color_name_to_flash(io, 'Green')
+      color_name_to_flash(io, led1, 'Green')
       sleep 1
-      color_name_to_flash(io, 'Yellow')
+      color_name_to_flash(io, led1, 'Yellow')
       sleep 1
-      color_name_to_flash(io, 'Red')
+      color_name_to_flash(io, led1, 'Red')
       sleep 1
-      color_name_to_flash(io, 'Brown')
+      color_name_to_flash(io, led1, 'Brown')
       sleep 1
-      color_name_to_flash(io, 'Purple')
+      color_name_to_flash(io, led1, 'Purple')
       sleep 1
-      color_name_to_flash(io, 'Orange')
+      color_name_to_flash(io, led1, 'Orange')
       sleep 1
 
       @leds.each do |gpios|
@@ -61,12 +61,10 @@ module Patlite
     end
 
 
-    def self.color_name_to_flash(io, color_name)
+    def self.color_name_to_flash(io, led, color_name)
       c = color_name.to_color.rgb
-      @leds.each do |gpios|
-        (0..2).each do |i|
-          io.soft_pwm_write(gpios[i], c[i])
-        end
+      (0..2).each do |i|
+        io.soft_pwm_write(led[i], c[i])
       end
     end
 
