@@ -101,6 +101,11 @@ module Patlite
       gpios.each do |gpio|
         io.pin_mode(gpio, WiringPi::OUTPUT)
         io.digital_write(gpio, 0)
+        color_name_to_flash(io, led, 'Black')
+      end
+      @leds.each do |led|
+        led.each{|gpio| io.soft_pwm_create(gpio, 0, 255)}
+        color_name_to_flash(io, led, 'Black')
       end
     end
 
@@ -109,10 +114,10 @@ module Patlite
       @leds.each do |led|
         led.each{|gpio| io.soft_pwm_create(gpio, 0, 255)}
       end
-      50.times do
+      100.times do
         @leds.each do |led|
           color_name_to_flash(io, led, 'Red')
-          sleep 0.05
+          sleep 0.025
           color_name_to_flash(io, led, 'Black')
         end
       end
