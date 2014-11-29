@@ -59,9 +59,12 @@ module Patlite
 
     def self.color_name_to_flash(io, color_name)
       c = color_name.to_color.rgb
-      (0..2).each do |i|
-        io.soft_pwm_write(@gpios[i], c[i])
+      @leds.each do |gpios|
+        (0..2).each do |i|
+          io.soft_pwm_write(gpios[i], c[i])
+        end
       end
     end
+
   end
 end
