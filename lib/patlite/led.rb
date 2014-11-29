@@ -72,15 +72,15 @@ module Patlite
 
     def self.check
       gpios = @leds.flatten
-      gpios.eachdo |gpio|
+      gpios.each do |gpio|
         io.pin_mode(gpio, WiringPi::OUTPUT)
         io.digital_write(gpio, 1)
       end
       sleep 3
-      gpios.eachdo |gpio|
+      gpios.each do |gpio|
         io.digital_write(gpio, 0)
       end
-      gpios.eachdo |gpio|
+      gpios.each do |gpio|
         io.digital_write(gpio, 1)
         sleep 1
         io.digital_write(gpio, 0)
