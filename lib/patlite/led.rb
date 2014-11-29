@@ -94,9 +94,9 @@ module Patlite
       [0.01,0.05,0.1,0.5,1].each do |t|
         4.times do
           @leds.each do |led|
-            color_name_to_flash(io, @led, 'Red')
+            color_name_to_flash(io, led, 'Red')
             sleep t
-            color_name_to_flash(io, @led, 'Black')
+            color_name_to_flash(io, led, 'Black')
           end
         end
       end
