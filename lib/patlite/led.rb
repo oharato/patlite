@@ -71,6 +71,7 @@ module Patlite
     end
 
     def self.check
+      io = WiringPi::GPIO.new
       gpios = @leds.flatten
       gpios.each do |gpio|
         io.pin_mode(gpio, WiringPi::OUTPUT)
