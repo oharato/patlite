@@ -70,7 +70,7 @@ module Patlite
       end
     end
 
-    def check
+    def self.check
       gpios = @leds.flatten
       gpios.eachdo |gpio|
         io.pin_mode(gpio, WiringPi::OUTPUT)
