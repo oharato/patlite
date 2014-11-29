@@ -9,7 +9,7 @@ require './patlite/jsay'
 require './patlite/input'
 require 'thread'
 
-$is_flash = false
+# $is_flash = false
 
   get '/' do
     haml :index
@@ -17,11 +17,11 @@ $is_flash = false
 
   get '/flash' do
     t1 = Thread.new do
-      $is_flash = true
-      Patlite::Led.flash
+      # $is_flash = true
+      Patlite::Led.rotate
     end
     t2 = Thread.new do
-      Patlite::Input.wait_input
+      Patlite::Input.wait_input(t1)
     end
     t1.join
     t2.join

@@ -91,14 +91,11 @@ module Patlite
       @leds.each do |led|
         led.each{|gpio| io.soft_pwm_create(gpio, 0, 255)}
       end
-      [0.01,0.05,0.1].each do |t|
-        p t
-        10.times do
-          @leds.each do |led|
-            color_name_to_flash(io, led, 'Red')
-            sleep t
-            color_name_to_flash(io, led, 'Black')
-          end
+      50.times do
+        @leds.each do |led|
+          color_name_to_flash(io, led, 'Red')
+          sleep 0.05
+          color_name_to_flash(io, led, 'Black')
         end
       end
     end
