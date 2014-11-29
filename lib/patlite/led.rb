@@ -4,11 +4,11 @@ require 'colorable'
 module Patlite
   class Led
     @gpios = [7,0,1]
-    led1 = [8,9,7]
-    led2 = [0,2,3]
-    led3 = [12,13,14]
-    led4 = [15,16,1]
-    @leds = [led1, led2, led3, led4]
+    @led1 = [8,9,7]
+    @led2 = [0,2,3]
+    @led3 = [12,13,14]
+    @led4 = [15,16,1]
+    @leds = [@led1, @led2, @led3, @led4]
 
     def self.flash
       io = WiringPi::GPIO.new
@@ -32,19 +32,19 @@ module Patlite
         gpios.each{|gpio| io.soft_pwm_create(gpio, 0, 255)}
       end
 
-      color_name_to_flash(io, led1, 'Blue')
+      color_name_to_flash(io, @led1, 'Blue')
       sleep 1
-      color_name_to_flash(io, led1, 'Green')
+      color_name_to_flash(io, @led1, 'Green')
       sleep 1
-      color_name_to_flash(io, led1, 'Yellow')
+      color_name_to_flash(io, @led1, 'Yellow')
       sleep 1
-      color_name_to_flash(io, led1, 'Red')
+      color_name_to_flash(io, @led1, 'Red')
       sleep 1
-      color_name_to_flash(io, led1, 'Brown')
+      color_name_to_flash(io, @led1, 'Brown')
       sleep 1
-      color_name_to_flash(io, led1, 'Purple')
+      color_name_to_flash(io, @led1, 'Purple')
       sleep 1
-      color_name_to_flash(io, led1, 'Orange')
+      color_name_to_flash(io, @led1, 'Orange')
       sleep 1
 
       @leds.each do |gpios|
