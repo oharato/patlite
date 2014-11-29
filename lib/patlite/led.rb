@@ -86,6 +86,24 @@ module Patlite
       end
     end
 
+    def self.all_on
+      io = WiringPi::GPIO.new
+      gpios = @leds.flatten
+      gpios.each do |gpio|
+        io.pin_mode(gpio, WiringPi::OUTPUT)
+        io.digital_write(gpio, 1)
+      end
+    end
+
+    def self.all_off
+      io = WiringPi::GPIO.new
+      gpios = @leds.flatten
+      gpios.each do |gpio|
+        io.pin_mode(gpio, WiringPi::OUTPUT)
+        io.digital_write(gpio, 0)
+      end
+    end
+
     def self.rotate
       io = WiringPi::GPIO.new
       @leds.each do |led|

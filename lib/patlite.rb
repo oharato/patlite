@@ -25,6 +25,7 @@ require 'thread'
     end
     t1.join
     t2.join
+    Patlite::Led.all_off
     haml :index
   end
 
