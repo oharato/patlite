@@ -4,7 +4,11 @@ require 'colorable'
 module Patlite
   class Led
     @gpios = [7,0,1]
-    @leds = [[8,9,7],[0,2,3],[12,13,14],[15,16,1]]
+    led1 = [8,9,7]
+    led2 = [0,2,3]
+    led3 = [12,13,14]
+    led4 = [15,16,1]
+    @leds = [led1, led2, led3, led4]
 
     def self.flash
       io = WiringPi::GPIO.new
@@ -63,6 +67,23 @@ module Patlite
         (0..2).each do |i|
           io.soft_pwm_write(gpios[i], c[i])
         end
+      end
+    end
+
+    def check
+      gpios = @leds.flatten
+      gpios.eachdo |gpio|
+        io.pin_mode(gpio, WiringPi::OUTPUT)}
+        io.digital_write(gpio, 1)
+      end
+      sleep 3
+      gpios.eachdo |gpio|
+        io.digital_write(gpio, 0)
+      end
+      gpios.eachdo |gpio|
+        io.digital_write(gpio, 1)
+        sleep 1
+        io.digital_write(gpio, 0)
       end
     end
 
