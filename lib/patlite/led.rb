@@ -96,13 +96,13 @@ module Patlite
 
     def self.all_off
       io = WiringPi::GPIO.new
-      @leds.flatten.each do |gpio|
-        io.pin_mode(gpio, WiringPi::OUTPUT)
-        io.digital_write(gpio, 0)
-      end
       @leds.each do |led|
         led.each{|gpio| io.soft_pwm_create(gpio, 0, 255)}
         color_name_to_flash(io, led, 'Black')
+      end
+      @leds.flatten.each do |gpio|
+        io.pin_mode(gpio, WiringPi::OUTPUT)
+        io.digital_write(gpio, 0)
       end
     end
 
