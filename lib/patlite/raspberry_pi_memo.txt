@@ -73,3 +73,30 @@ Blue : ( 5 – 3.6 ) / ( ( 2000 / 7000 ) * 0.02 ) = 91Ω
 wiringPiISR
 GPIO接続のLCD表示 http://www7b.biglobe.ne.jp/~nopnop2002/GPIO-LCD-4.html
 がた老AVR研究所: Raspberry http://gataro-avr-ken.cocolog-nifty.com/blog/raspberry/index.html
+
+
+
+
+マイコン内蔵ＲＧＢ　８ＬＥＤスティック: LED(発光ダイオード) 秋月電子通商 電子部品 ネット通販 http://akizukidenshi.com/catalog/g/gM-08435/
+
+マイコン内蔵ＲＧＢ　５ｍｍＬＥＤ　ＰＬ９８２３－Ｆ５: LED(発光ダイオード) 秋月電子通商 電子部品 ネット通販 http://akizukidenshi.com/catalog/g/gI-08411/
+
+マイコン内蔵ＲＧＢ　５ｍｍＬＥＤ　（５個入）: LED(発光ダイオード) 秋月電子通商 電子部品 ネット通販 http://akizukidenshi.com/catalog/g/gI-08396/
+
+
+ＬＥＤ付無接点プッシュスイッチ（円型タイプ）: パーツ一般 秋月電子通商 電子部品 ネット通販 http://akizukidenshi.com/catalog/g/gP-06504/
+ＬＥＤ付き押しボタンスイッチ（白・正方形・赤色ＬＥＤ）ＳＴ１２－４０１ＦＣＧ: パーツ一般 秋月電子通商 電子部品 ネット通販 http://akizukidenshi.com/catalog/g/gP-02010/
+
+ＲＧＢフルカラードットマトリクスＬＥＤパネル　１６ｘ３２ドット: LED(発光ダイオード) 秋月電子通商 電子部品 ネット通販 http://akizukidenshi.com/catalog/g/gM-07764/
+
+
+ブレッドボード　ＢＢ－８０１: パーツ一般 秋月電子通商 電子部品 ネット通販 http://akizukidenshi.com/catalog/g/gP-05294/
+ブレッドボード・ジャンパーワイヤ　ＥＩＣ－Ｊ－Ｌ: パーツ一般 秋月電子通商 電子部品 ネット通販 http://akizukidenshi.com/catalog/g/gP-00288/
+ミニブレッドボード　ＢＢ－６０１（白）: パーツ一般 秋月電子通商 電子部品 ネット通販 http://akizukidenshi.com/catalog/g/gP-05155/
+片面ガラス・ユニバーサル基板（ブレッドボード配線パターンタイプ）: パーツ一般 秋月電子通商 電子部品 ネット通販 http://akizukidenshi.com/catalog/g/gP-04303/
+
+
+Give Your Raspberry Pi a NeoPixel | josh.com http://wp.josh.com/2014/09/02/give-your-raspberrypi-a-neopixel/
+
+Software | NeoPixels on Raspberry Pi | Adafruit Learning System https://learn.adafruit.com/neopixels-on-raspberry-pi/software
+setuptools 7.0 : Python Package Index https://pypi.python.org/pypi/setuptools#unix-wget

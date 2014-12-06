@@ -7,7 +7,7 @@ module Patlite
     @led1 = [8,9,7]
     @led2 = [0,2,3]
     @led3 = [12,13,14]
-    @led4 = [15,16,1]
+    @led4 = [4,5,6]
     @leds = [@led1, @led2, @led3, @led4]
 
     def self.flash
