@@ -59,7 +59,7 @@ require 'thread'
     end
     t2 = Thread.new do
       3.times do
-        `aplay ./patlite/Siren_Noise.mp3`
+        `mpg123 ./patlite/Siren_Noise.mp3`
       end
     end
     t3 = Thread.new do
