@@ -12,7 +12,7 @@ module Patlite
 
       while true
         if io.digital_read(@input_gpio) == WiringPi::LOW
-          array_thread.each{&:.kill}
+          array_thread.each{&:kill}
           break
         end
       end
