@@ -55,19 +55,21 @@ require 'thread'
 
   get '/alert' do
     t1 = Thread.new do
-      $is_flash = true
-      Patlite::Led.flash
+      Patlite::Led.rotate
     end
     t2 = Thread.new do
       3.times do
-        Patlite::Jsay.say "危険です！"
+        `aplay ./patlite/Siren_Noise.mp3`
       end
+    end
+    t3 = Thread.new do
+      Patlite::Input.wait_input([t1,t2])
     end
     t1.join
     t2.join
+    t3.join
+    Patlite::Led.all_off
     haml :index
+
   end
 
-  # after do
-  #   haml :index
-  # end

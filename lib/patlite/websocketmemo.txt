@@ -1,9 +1,0 @@
-http://shokai.org/blog/archives/7223
-
-http://qiita.com/hayabusa333/items/70bcec06f2b47f0a4d46
-
-https://github.com/faye/faye-websocket-ruby
-
-https://devcenter.heroku.com/articles/ruby-websockets
-
-http://melborne.github.io/2013/12/13/minimum-step-for-deplying-websocket-app-to-heroku/

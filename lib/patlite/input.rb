@@ -4,7 +4,7 @@ module Patlite
   class Input
     @input_gpio = 11
 
-    def self.wait_input(thread)
+    def self.wait_input(array_thread)
       io = WiringPi::GPIO.new
 # http://www.rubydoc.info/gems/wiringpi2/2.0.1/WiringPi/GPIO#pull_up_dn_control-instance_method
       io.pin_mode(@input_gpio, WiringPi::INPUT)
@@ -12,8 +12,7 @@ module Patlite
 
       while true
         if io.digital_read(@input_gpio) == WiringPi::LOW
-          thread.kill
-          # $is_flash = false
+          array_thread.each{&:.kill}
           break
         end
       end
