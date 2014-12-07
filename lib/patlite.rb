@@ -60,7 +60,7 @@ require 'thread'
     t2 = Thread.new do
       20.times do
         # `mpg123 ./patlite/Siren_Noise.mp3`
-        # `aplay ./patlite/Siren_Noise.wav`
+        `aplay ./patlite/Siren_Noise.wav`
       end
     end
     t3 = Thread.new do
