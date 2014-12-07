@@ -106,3 +106,8 @@ Give Your Raspberry Pi a NeoPixel | josh.com http://wp.josh.com/2014/09/02/give-
 
 Software | NeoPixels on Raspberry Pi | Adafruit Learning System https://learn.adafruit.com/neopixels-on-raspberry-pi/software
 setuptools 7.0 : Python Package Index https://pypi.python.org/pypi/setuptools#unix-wget
+
+Raspberry Pi B+をセットアップして無線LAN接続してみる - 照る照る坊主の青空 http://ttbbsky.net/raspberry-pi-bplus%E3%82%92%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97%E3%81%97%E3%81%A6%E7%84%A1%E7%B7%9Alan/
+
+16×2 LCD Module Control Using Python | Raspberry Pi Spy http://www.raspberrypi-spy.co.uk/2012/07/16x2-lcd-module-control-using-python/
+Amazon.co.jp： サインスマート（SainSmart） 1.8" TFT カラー　LCD ディスプレイ モジュール SPI インタフェース　&　MicroSD　付き　for Arduino UNO MEGA R3: 家電・カメラ http://www.amazon.co.jp/dp/B008HWTVQ2/
