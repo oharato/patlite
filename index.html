@@ -48,12 +48,12 @@
             <script type="text/template">
 
 #Raspberry Piで遊んでみた
+<img src="img/RaspberryPi_Logo.png" style="width:33%;border:none;">
 
 ---
 
 #目次
 1. Raspberry Piとは？
-2. 用意した物
 2. Raspberry Piのセットアップ
 3. Lチカ
 4. 音を鳴らしてみる
@@ -70,34 +70,56 @@
 
 ---
 
-- ラズベリーパイ財団によって英国で開発されたARMプロセッサを搭載したシングルボードコンピュータ(wikiより)
+##Raspberry Piとは？
+<img src="img/raspberry_pi_b_plus.jpg" style="width:33%;border:none;">
+
+- ラズベリーパイ財団によって英国で開発されたARMプロセッサを搭載したシングルボードコンピュータ
 - 2012年2月にModelA($25)とModelB($35)発売。
 - 2014年6月にModelB+($35)発売。
 - 2014年11月にModelA+($20)発売。
-  - 現在、販売している日本のオンラインショップは無いみたい
 
 ---
 
 ## Model B+の仕様
-- SoC:Broadcom BCM2835（CPU, GPU, DSP, SDRAM内蔵）
-- CPU:700 MHz / ARM1176JZF-S コア（ARM11ファミリ）
-- GPU:Broadcom VideoCore IV,OpenGL ES 2.0, 1080p 30fps H.264/MPEG-4 AVC high-profile デコーダー
-- メモリ（SDRAM）:512MB
-- USB 2.0 ポート:4（統合USBハブ）
-- 映像出力:HDMI（rev1.3&1.4）, コンポジットビデオ（3.5mm4極ジャック）
-- 音声出力:HDMI, 3.5mm4極ジャック
+<div style="overflow: hidden;">
+<div style="width:25%;float:left;">
+<img src="img/raspberry_pi_b_plus.jpg">
+</div>
+
+<div style="width:75%;float:right;">
+<ul>
+<li>SoC:Broadcom BCM2835（CPU, GPU, DSP, SDRAM内蔵）</li>
+<li>CPU:700 MHz / ARM1176JZF-S コア（ARM11ファミリ）</li>
+<li>GPU:Broadcom VideoCore IV,OpenGL ES 2.0, 1080p 30fps H.264/MPEG-4 AVC high-profile デコーダー</li>
+<li>メモリ（SDRAM）:512MB</li>
+<li>USB 2.0 ポート:4（統合USBハブ）</li>
+<li>映像出力:HDMI（rev1.3&1.4）, コンポジットビデオ（3.5mm4極ジャック）</li>
+<li>音声出力:HDMI, 3.5mm4極ジャック</li>
+<ul>
+</div>
+</div>
 
 ---
 
 ## Model B+の仕様
-- ストレージ:microSDメモリーカードスロット（SDIO対応）
-- ネットワーク:10/100Mbps イーサネット
-- 低レベル周辺機器:27×GPIO, UART, I2C, SPIと2つのチップセレクト, +3.3V, +5V, GND
-- カメラコネクタ:15ピン MIPIカメラシリアルインターフェース（CSI-2）コネクタ搭載
-- ディスプレイコネクタ:Display Serial Interface（DSI）15ピンフラットケーブルコネクタ
-- 電源ソース:5V / USB Micro-Bコネクタ または GPIOコネクタ
-- 大きさ:85mm × 56mm
-- OS:Debian, Fedora, Arch Linux
+<div style="overflow: hidden;">
+<div style="width:25%;float:left;">
+<img src="img/raspberry_pi_b_plus.jpg">
+</div>
+
+<div style="width:75%;float:right;font-size:80%;">
+<ul>
+<li>ストレージ:microSDメモリーカードスロット（SDIO対応）</li>
+<li>ネットワーク:10/100Mbps イーサネット</li>
+<li>低レベル周辺機器:27×GPIO, UART, I2C, SPIと2つのチップセレクト, +3.3V, +5V, GND</li>
+<li>カメラコネクタ:15ピン MIPIカメラシリアルインターフェース（CSI-2）コネクタ搭載</li>
+<li>ディスプレイコネクタ:Display Serial Interface（DSI）15ピンフラットケーブルコネクタ</li>
+<li>電源ソース:5V / USB Micro-Bコネクタ または GPIOコネクタ</li>
+<li>大きさ:85mm × 56mm</li>
+<li>OS:Debian, Fedora, Arch Linux</li>
+<ul>
+</div>
+</div>
 
 ---
 
@@ -106,76 +128,221 @@
 ---
 
 ##必要なもの
+<div style="overflow: hidden;">
+<div style="width:25%;float:left;">
+<img src="img/raspberry_pi_b_plus.jpg">
+</div>
 
-- Raspberry Pi Model B+
-  - 正規代理店のRSコンポーネンツ株式会社のオンラインショップで注文。送料込みで約4800円。
-- micro SDHCカード 16GB
-  - OSが入る容量で転送速度の速い(Class10)もの。相性もあるみたいなのでここでチェック＞http://elinux.org/RPi_SD_cards
-  - 自分は容量と値段のコスパの良かったを購入。円。
-- USB無線LANアダプター
-  - バッファローの(円)を購入。発熱が大きいので、百均でUSB延長ケーブルも購入。
-- LANケーブル、HDMI端子付きディスプレイ、USBキーボードとマウス
-  - 無線LANのセットアップ完了まで必要。完了後はsshクライアントからアクセス。
-- micro USBケーブル、USB電源アダプタ
-  - 電源です。
+<div style="width:75%;float:right;">
+<ul>
+  <li>Raspberry Pi Model B+</li>
+  <ul>
+    <li>正規代理店のRSコンポーネンツ株式会社のオンラインショップで注文。送料込みで約4800円。</li>
+  </ul>
+</ul>
+</div>
+</div>
+
+<div style="overflow: hidden;">
+<div style="width:25%;float:left;">
+<img src="img/microSDHCcard.jpg">
+</div>
+
+<div style="width:75%;float:right;">
+<ul>
+  <li>micro SDHCカード 16GB</li>
+  <ul>
+    <li>OSが入る容量で転送速度の速い(Class10)もの。相性もあるみたいなのでここでチェック＞http://elinux.org/RPi_SD_cards</li>
+    <li>自分は容量と値段のコスパの良かったものをあきばお～で購入。800円。</li>
+  </ul>
+</ul>
+</div>
+</div>
 
 ---
 
-#Raspberry Piのセットアップ
+##必要なもの
+<div style="overflow: hidden;">
+<div style="width:25%;float:left;">
+<img src="img/USB_wifi.jpg">
+</div>
+
+<div style="width:75%;float:right;">
+<ul>
+  <li>USB無線LANアダプター</li>
+  <ul>
+    <li>バッファローのWLI-UC-GNM2(900円)をAmazonで購入。発熱が大きいので、百均でUSB延長ケーブルも購入。</li>
+  </ul>
+</ul>
+</div>
+</div>
+
+<div style="overflow: hidden;">
+<div style="width:25%;float:left;">
+</div>
+
+<div style="width:75%;float:right;">
+<ul>
+  <li>LANケーブル、HDMI端子付きディスプレイ、USBキーボードとマウス</li>
+  <ul>
+    <li>無線LANのセットアップ完了まで必要。完了後はsshクライアントからアクセス。</li>
+  </ul>
+
+  <li>micro USBケーブル、USB電源アダプタ</li>
+  <ul>
+    <li>電源です。5V 1A以上のもの。</li>
+  </ul>
+</ul>
+</div>
+</div>
+
+---
+
+##セットアップ手順
 - micro SDカードにOSのイメージを書き込み
 - micro SDカードをRaspberry Piに差して起動
 - ダイアログに従ってOSをインストール
--
 
 ---
 
-#Raspberry Piのセットアップ
 ##USB無線LANの設定
--USB無線LANアダプタを差してドライバインストール
--アクセスポイントへの接続設定
---ステルスモードのSSIDはやっかい
+- USB無線LANアダプタを差してドライバインストール
+- アクセスポイントへの接続設定
 
+```
+$ sudo vi /etc/wpa_supplicant/wpa_supplicant.conf
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+        scan_ssid=1
+        ssid="ssid"
+        psk="password"
+        proto=RSN
+        key_mgmt=WPA-PSK
+        pairwise=CCMP
+        auth_alg=OPEN
+}
+```
+
+```
+$ sudo vi /etc/network/interfaces
+auto lo
+
+iface lo inet loopback
+iface eth0 inet dhcp
+
+auto wlan0
+allow-hotplug wlan0
+#iface wlan0 inet manual
+iface wlan0 inet dhcp
+#iface wlan0 inet static
+#  address 192.168.10.10
+#  netmask 255.255.255.0
+#  gateway 192.168.10.1
+#wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+iface default inet dhcp
+```
 ---
 
 #Lチカ
+
+---
+
 ##必要なもの
+<table>
+<tr>
+<td style="width:25%;"><img src="img/LED.jpg" style="width:100%;"></td>
+<td style="width:75%;">高輝度赤色LED。10個150円</td>
+</tr>
+<tr>
+<td style="width:25%;"><img src="img/solderless_breadboard.jpg" style="width:100%;"></td>
+<td style="width:75%;">ブレッドボード。200円</td>
+</tr>
+<table>
 
-- 高輝度赤色LED
-- フルカラーLED
-- ブレッドボード
-- ブレッドボード用のケーブル
-- 抵抗
-- 今回は半田ごてを使わないでできるところまでやる！
--
+---
 
+##必要なもの
+<table>
+<tr>
+<td style="width:25%;"><img src="img/jumper_code.jpg" style="width:100%;"></td>
+<td style="width:75%;">ブレッドボード用ジャンパーコード。10本300円</td>
+</tr>
+<tr>
+<td style="width:25%;"><img src="img/resistor.jpg" style="width:100%;"></td>
+<td style="width:75%;">抵抗。100本100円</td>
+</tr>
+<table>
+
+---
+
+##LEDをとりあえず光らせてみる
+<img src="img/LED_light.jpg" style="width:50%;border:none;">
+
+- LEDのアノード(足の長い方)を3.3Vの1番ピンに、カソードをGNDの14番ピンにつなぎ、間に330Ωの抵抗を入れておく
+```
+R = V/I
+  = (3.3 - 1.85)/0.0044 = 330
+# 1.85V LEDが光るのに必要な電圧
+# 0.0044A LEDに流せる最大電流は20mA。1つのGPIOピンの最大電流は16mA。
+#  余裕を持って4.4mA流すとする。
+```
+
+
+---
+
+##シェルスクリプトを使う
+- LEDのアノードをGPIO8の24番ピンに、カソードをGNDにつなぐ
+
+###LEDを点ける
+```
+# GPIO8を使う宣言。
+# /sys/class/gpio/ディレクトリにGPIO8ピン制御に必要な仮想ファイルが生成
+$ sudo echo "8" > /sys/class/gpio/export
+
+# 出力モードにする
+$ sudo echo "out" > /sys/class/gpio/gpio8/direction
+
+# GPIO8をハイにする
+$ sudo echo "1" > /sys/class/gpio/gpio8/value
+```
+
+###LEDを消す
+```
+# GPIO8をローにする
+$ sudo echo "0" > /sys/class/gpio/gpio8/value
+```
+
+---
+
+##Wiring Piライブラリを使う
+
+---
+
+##Wiring Piライブラリを使う
+
+---
+
+#音を鳴らしてみる
+
+---
+
+
+---
+
+#Webインターフェース付きパトライトを作る
+
+
+
+---
 ---
 
 #必要なもの
 - LEDランタン
 - アイロンビーズ
 
-
----
-
-#Lチカ
--LEDをとりあえず光らせてみよう
-
----
-
-#Lチカ
-##物理的な設定
-
----
-
-#Lチカ
-##物理的な設定
-
-
----
-
-
-
----
 
 
 
@@ -222,6 +389,21 @@
 
 ---
 
+##fritzing
+- オープンソースの電子回路図作成ツール
+- http://fritzing.org/home/
+
+
+---
+
+##電子部品屋
+- 秋月電子通商
+- 千石電商
+
+
+---
+---
+
 #おしまい
             </script>
         </sectin>
@@ -238,6 +420,8 @@
 			// Full list of configuration options available here:
 			// https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
+        width: 1200,
+        height: 1000,
 				controls: true,
 				progress: true,
 				history: true,
