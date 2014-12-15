@@ -204,6 +204,22 @@
   - [Win32 Disk Imager](http://sourceforge.jp/projects/sfnet_win32diskimager/)を起動してimgファイルを選択し、書き込みDeviceが正しいことを確認してWrite
 - micro SDカードをRaspberry Piに差して起動
 - ダイアログに従ってOSをインストール
+raspi-config
+1. Expand Filesystem
+ > Root partition has been resized. > OK
+4. Internationalization Options
+ > I1 Change Locale > en_GB.UTF-8 をスペースキーで解除し，en_US.UTF-8 ja_jP.UTF-8を選択 > default local:en_US.UTF-8
+ > I2 Change Timezone > Asia > Tokyo
+ > I3 Change Keyboard Layout > Generic 101-key PC > Other > Japanese > Japanese > The default for the keyboard layout > No compose key > Use Control+Alt+Backspace to terminate the X server?:Yes
+8. Advanced Options
+ > A1 Overscan > Disable
+reboot
+
+username:pi
+password:raspberry
+
+$ sudo lsusb
+sudo wpa_passphrase SSID PASSWORD > ~/pass.tmp
 
 ---
 
@@ -212,6 +228,11 @@
 - アクセスポイントへの接続設定
 
 ```
+
+$ sudo bash
+ # cd /etc/wpa_supplicant
+ # wpa_passphrase ESSID pass >> wpa_supplicant.conf
+
 $ sudo vi /etc/wpa_supplicant/wpa_supplicant.conf
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
@@ -226,6 +247,7 @@ network={
         auth_alg=OPEN
 }
 ```
+scan_ssid=1 ステルスモード
 
 ```
 $ sudo vi /etc/network/interfaces
@@ -246,6 +268,33 @@ iface wlan0 inet dhcp
 wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
 iface default inet dhcp
 ```
+
+$ sudo ifdown wlan0
+$ sudo ifup wlan0
+$ ping google.com
+OK
+
+$ sudo vi /etc/hostname
+raspberrypiaplus
+$ sudo vi /etc/hosts
+127.0.1.1 raspberrypiaplus
+
+$ sudo apt-get update
+ $ sudo apt-get install avahi-daemon
+
+Bonjourのインストール (Windowsのみ)
+PCからavahiが設定されたRaspberryPiにアクセスするためには、PC側にもavahiかBonjourがインストールされている必要があります。
+
+Linuxでは、RaspberryPiと同様に avahi-daemonをインストールすれば使用できます。また MacはデフォルトでBonjourがインストールされているので、特に何もする必要がありません。
+
+WindowsではデフォルトではBonjourはインストールされていません。 最も簡単にBonjourを導入する方法は iTunes をインストールすることです。
+
+
+sudo apt-get upgrade
+
+sudo reboot
+
+sudo halt
 ---
 
 #Lチカ
@@ -330,6 +379,27 @@ $ sudo echo "0" > /sys/class/gpio/gpio8/value
 #音を鳴らしてみる
 
 ---
+---
+
+#音を鳴らしてみる
+
+---
+
+##必要なもの
+-アンプ付きスピーカー（一番簡単）
+--電源は電池式またはUSBから
+-USBスピーカー
+--メリット：ケーブルが１本で済む
+--デメリット：少し高い。設定が必要
+-圧電スピーカー
+
+---
+
+##鳴らし方
+- スピーカーつなぐ
+- 音声出力をスピーカーにする(デフォルトはHDMI)
+- 音声ファイルをコマンドで鳴らす
+
 
 
 ---
