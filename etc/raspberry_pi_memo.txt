@@ -111,3 +111,10 @@ Raspberry Pi B+をセットアップして無線LAN接続してみる - 照る�
 
 16×2 LCD Module Control Using Python | Raspberry Pi Spy http://www.raspberrypi-spy.co.uk/2012/07/16x2-lcd-module-control-using-python/
 Amazon.co.jp： サインスマート（SainSmart） 1.8" TFT カラー　LCD ディスプレイ モジュール SPI インタフェース　&　MicroSD　付き　for Arduino UNO MEGA R3: 家電・カメラ http://www.amazon.co.jp/dp/B008HWTVQ2/
+
+
+Raspberry Piに無線LANのUSBアダプタをつける | ものづくりエクスペリメント http://denshikousaku.net/raspberry-pi-wifi-lan-usb
+
+Raspberry Piを購入して初期設定 - 河童＠漂流中 http://d.hatena.ne.jp/kappaseijin/20140201/1391244521
+
+Raspberry Piで学ぶ電子工作　超小型コンピュータで電子回路を制御する　サポートページ｜ブルーバックス｜講談社BOOK倶楽部 http://bluebacks.kodansha.co.jp/bsupport/rspi.html
