@@ -2,7 +2,7 @@ require 'wiringpi2'
 
 gpio = 10
 io = WiringPi::GPIO.new
-io.mode(gpio, OUTPUT)
+io.mode(gpio, WiringPi::OUTPUT)
 
 10.times do
   io.write(gpio, 1)
