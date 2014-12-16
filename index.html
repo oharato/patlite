@@ -418,23 +418,76 @@ $ gpio readall
 - GPIOコマンド
 
 ```
-$ gpio -g mode 17 out  # GPIO 17をoutputにする
-$ gpio -g write 17 1   # GPIO 17のHIGHにする
-$ gpio -g write 17 0   # GPIO 17をLOWにする
+$ gpio -g mode 8 out
+$ gpio -g write 8 1
+$ gpio -g write 8 0
 ```
+
+--
+
+```
+$ gpio readall
+ +-----+-----+---------+------+---+--A Plus--+---+------+---------+-----+-----+
+ | BCM | wPi |   Name  | Mode | V | Physical | V | Mode | Name    | wPi | BCM |
+ +-----+-----+---------+------+---+----++----+---+------+---------+-----+-----+
+ |     |     |    3.3v |      |   |  1 || 2  |   |      | 5v      |     |     |
+ |   2 |   8 |   SDA.1 |   IN | 1 |  3 || 4  |   |      | 5V      |     |     |
+ |   3 |   9 |   SCL.1 |   IN | 1 |  5 || 6  |   |      | 0v      |     |     |
+ |   4 |   7 | GPIO. 7 |   IN | 1 |  7 || 8  | 1 | ALT0 | TxD     | 15  | 14  |
+ |     |     |      0v |      |   |  9 || 10 | 1 | ALT0 | RxD     | 16  | 15  |
+ |  17 |   0 | GPIO. 0 |   IN | 0 | 11 || 12 | 0 | IN   | GPIO. 1 | 1   | 18  |
+ |  27 |   2 | GPIO. 2 |   IN | 0 | 13 || 14 |   |      | 0v      |     |     |
+ |  22 |   3 | GPIO. 3 |   IN | 0 | 15 || 16 | 0 | IN   | GPIO. 4 | 4   | 23  |
+ |     |     |    3.3v |      |   | 17 || 18 | 0 | IN   | GPIO. 5 | 5   | 24  |
+ |  10 |  12 |    MOSI |   IN | 0 | 19 || 20 |   |      | 0v      |     |     |
+ |   9 |  13 |    MISO |   IN | 0 | 21 || 22 | 0 | IN   | GPIO. 6 | 6   | 25  |
+ |  11 |  14 |    SCLK |   IN | 0 | 23 || 24 | 0 | OUT  | CE0     | 10  | 8   |
+ |     |     |      0v |      |   | 25 || 26 | 1 | IN   | CE1     | 11  | 7   |
+ |   0 |  30 |   SDA.0 |   IN | 1 | 27 || 28 | 1 | IN   | SCL.0   | 31  | 1   |
+ |   5 |  21 | GPIO.21 |   IN | 1 | 29 || 30 |   |      | 0v      |     |     |
+ |   6 |  22 | GPIO.22 |   IN | 1 | 31 || 32 | 0 | IN   | GPIO.26 | 26  | 12  |
+ |  13 |  23 | GPIO.23 |   IN | 0 | 33 || 34 |   |      | 0v      |     |     |
+ |  19 |  24 | GPIO.24 |   IN | 0 | 35 || 36 | 1 | OUT  | GPIO.27 | 27  | 16  |
+ |  26 |  25 | GPIO.25 |   IN | 0 | 37 || 38 | 0 | IN   | GPIO.28 | 28  | 20  |
+ |     |     |      0v |      |   | 39 || 40 | 0 | IN   | GPIO.29 | 29  | 21  |
+ +-----+-----+---------+------+---+----++----+---+------+---------+-----+-----+
+ | BCM | wPi |   Name  | Mode | V | Physical | V | Mode | Name    | wPi | BCM |
+ +-----+-----+---------+------+---+--A Plus--+---+------+---------+-----+-----+
+```
+
+- 24番ピン
+  - BCM8…BROADCOM BCM2835半導体チップにおける番号
+  - wPi10…Wiring Pi用の番号
+
 
 ---
 
 ## wiringpi2 gemを使ってrubyで光らせる
 
+
 ```
-$ sudo gem install wiringpi2
+$ git clone https://github.com/oharato/patlite.git
+$ sudo apt-get install ruby-dev #ruby1.9で必要
+$ sudo gem install wiringpi2 #version1のwiringpiもあるので注意
+$ sudo ruby ~/patlite/etc/l_chika.rb
 ```
 
+```ruby
+# l_chika.rb
+require 'wiringpi2'
 
----
+gpio = 10 # 24番ピン == BCM8 == wPi10
+io = WiringPi::GPIO.new
+io.pin_mode(gpio, WiringPi::OUTPUT)
 
----
+10.times do
+  io.digital_write(gpio, 1)
+  sleep 0.5
+  io.digital_write(gpio, 0)
+  sleep 0.5
+end
+```
+
 ---
 
 #しゃべらせてみる
@@ -450,16 +503,50 @@ $ sudo gem install wiringpi2
 ##とりあえず音を鳴らす
 - スピーカーつなぐ
 - 音声出力をスピーカーにする(デフォルトはHDMI)
-- 音声ファイルをコマンドで鳴らす
 
+```
+$ amixer cset numid=3 1
+```
+
+- 音声ファイルをコマンドで鳴らす
+  - wave
+
+```
+$ aplay /usr/share/sounds/alsa/Noise.wav
+```
+
+- mp3
+
+```
+$ sudo apt-get install mpg321
+$ mpg123 hoge.mp3
+```
+
+- 音量調節
+
+コマンドで
+```
+$ amixer set PCM 90%
+```
+
+GUIで
+```
+$ sudo apt-get install alsa-utils
+$ sudo alsamixer
+```
 
 ---
 
 ##合成音声ソフトのインストール
 ```
+$ sudo apt-get install open-jtalk open-jtalk-mecab-naist-jdic htsengine libhtsengine-dev hts-voice-nitech-jp-atr503-m001
 $ wget http://downloads.sourceforge.net/project/mmdagent/MMDAgent_Example/MMDAgent_Example-1.3/MMDAgent_Example-1.3.zip
 $ unzip MMDAgent_Example-1.3.zip
 $ sudo cp -R MMDAgent_Example-1.3/Voice/* /usr/share/hts-voice/
+$ cd ~/patlite/lib/patlite
+$ chmod +x ~/patlite/lib/patlite/jsay.sh
+$ ~/patlite/lib/patlite/jsay.sh "おはようございます"
+
 ```
 
 ---
@@ -474,10 +561,33 @@ $ sudo cp -R MMDAgent_Example-1.3/Voice/* /usr/share/hts-voice/
 ---
 
 ##必要なもの
-- LEDランタン
-- フルカラーLED
+<table>
+<tr>
+<td style="width:25%;"><img src="img/led_lantern.jpg" style="width:100%;"></td>
+<td style="width:75%;">LEDランタン。100円</td>
+</tr>
+<tr>
+<td style="width:25%;"><img src="img/fullcolorled.jpg" style="width:100%;"></td>
+<td style="width:75%;">RGBフルカラーLED。1個50円。最長の足が共通のカソードで、残りの3本はRGBのアノード</td>
+</tr>
+<table>
 
 
+---
+
+##工作
+- LEDランタンにフルカラーLEDを設置できるように適宜加工する
+- 各フルカラーLEDのRGBの足がRaspberry PiのGPIOに、コモンカソードがGNDに接続されるようにブレッドボードを経由してつなぐ
+
+<img src="img/fullcolorled_light.jpg" style="width:50%;">
+
+---
+
+##Webアプリ作成
+- 要件
+  1. 本文にFAILを含むメッセージをgetパラメータで渡されたら、LEDが赤く回転しつつ、アラート音を出してメッセージを読み上げる。ボタンを押したら止まる。
+- 　```hoge```
+  2. 色名をgetパラメータで渡されたら、その色で５回点滅する
 
 ---
 
@@ -535,10 +645,17 @@ $ sudo cp -R MMDAgent_Example-1.3/Voice/* /usr/share/hts-voice/
 
 ---
 
+## Nitrous.io, cloud9.io
+- オンライン開発環境
+
+---
+
+
 ##fritzing
-- オープンソースの電子回路図作成ツール
+- オープンソースの電子回路図作成ツール(Win,Mac,Linux)
 - http://fritzing.org/home/
 
+<img src="img/fritzing.jpg" style="width:100%;">
 
 ---
 
@@ -546,8 +663,6 @@ $ sudo cp -R MMDAgent_Example-1.3/Voice/* /usr/share/hts-voice/
 - 秋月電子通商
 - 千石電商
 
-
----
 ---
 
 #おしまい
