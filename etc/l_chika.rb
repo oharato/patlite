@@ -2,11 +2,11 @@ require 'wiringpi2'
 
 gpio = 10
 io = WiringPi::GPIO.new
-io.mode(gpio, WiringPi::OUTPUT)
+io.pin_mode(gpio, WiringPi::OUTPUT)
 
 10.times do
-  io.write(gpio, 1)
+  io.digital_write(gpio, 1)
   sleep 0.5
-  io.write(gpio, 0)
+  io.digital_write(gpio, 0)
   sleep 0.5
 end
