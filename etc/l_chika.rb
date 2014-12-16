@@ -1,4 +1,4 @@
-require 'wiringpi'
+require 'wiringpi2'
 
 gpio = 10
 io = WiringPi::GPIO.new
