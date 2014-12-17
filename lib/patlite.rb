@@ -24,7 +24,7 @@ get '/flash' do
     Patlite::Input.wait_input([t1])
   end
   t1.join
-  t2.join
+  t2.kill
   Patlite::Led.all_off
   haml :index
 end
@@ -60,7 +60,7 @@ end
 get '/alert' do
   t1 = Thread.new do
     3.times do
-      `aplay ./patlite/Siren_Noise.wav`
+      system 'aplay ./patlite/Siren_Noise.wav'
       if params[:voice] == "show"
         Patlite::Jsay.say_show params[:message]
       else
@@ -78,7 +78,7 @@ get '/alert' do
   end
   t1.join
   t2.join
-  t3.join
+  t3.kill
   Patlite::Led.all_off
   haml :index
 

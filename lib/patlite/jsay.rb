@@ -4,7 +4,7 @@ module Patlite
   class Jsay
 
     def self.say(message)
-      command = "/home/pi/jsay.sh #{message}"
+      command = "./patlite/jsay.sh #{message}"
       system "#{command}"
     end
 
