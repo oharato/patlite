@@ -15,10 +15,6 @@ module Patlite
           array_thread.each(&:kill)
           break
         end
-        sleep 0.2
-        if array_thread.all?(&:stop?)
-          break
-        end
       end
 
     end
