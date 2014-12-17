@@ -12,7 +12,7 @@ module Patlite
       command = <<"EOS"
 curl "https://api.voicetext.jp/v1/tts" \
  -u "dzywbs4umvr3uw60:" \
- -d "text=#{message.shellescape}" \
+ -d "text=#{message}" \
  -d "speaker=show" | aplay -
 EOS
       `#{command}`
