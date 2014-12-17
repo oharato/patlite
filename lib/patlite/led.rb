@@ -3,25 +3,42 @@ require 'colorable'
 
 module Patlite
   class Led
-    @gpios = [7,0,1]
     @led1 = [8,9,7]
     @led2 = [0,2,3]
     @led3 = [12,13,14]
     @led4 = [4,5,6]
     @leds = [@led1, @led2, @led3, @led4]
 
-    def self.flash
+    def self.light(color)
       io = WiringPi::GPIO.new
+      @leds.flatten.each{|gpio| io.soft_pwm_create(gpio, 0, 255)}
+      5.times do
+        @leds.each do |led|
+          color_name_to_flash(io, led, color)
+          sleep 1
+        end
+      end
+      @leds.flatten.each{|gpio| io.soft_pwm_write(gpio, 0)}
+    end
 
-      @gpios.each{|gpio| io.pin_mode(gpio, WiringPi::OUTPUT)}
 
-      10.times do
-        break unless $is_flash
-        @gpios.each do |gpio|
-         io.digital_write(gpio, 1)
-         sleep 0.5
-         io.digital_write(gpio, 0)
-         sleep 0.5
+    def self.color_name_to_flash(io, led, color_name)
+      c = color_name.to_color.rgb
+      (0..2).each do |i|
+        io.soft_pwm_write(led[i], c[i])
+      end
+    end
+
+    def self.rotate(rotate_num = 20, duration = 0.025)
+      io = WiringPi::GPIO.new
+      @leds.each do |led|
+        led.each{|gpio| io.soft_pwm_create(gpio, 0, 255)}
+      end
+      rotate_num.times do
+        @leds.each do |led|
+          color_name_to_flash(io, led, 'Red')
+          sleep duration
+          color_name_to_flash(io, led, 'Black')
         end
       end
     end
@@ -52,25 +69,6 @@ module Patlite
       end
     end
 
-    def self.light(color)
-      io = WiringPi::GPIO.new
-      @gpios.each{|gpio| io.soft_pwm_create(gpio, 0, 255)}
-      5.times do
-        @leds.each do |led|
-          color_name_to_flash(io, led, color)
-          sleep 1
-        end
-      end
-      @gpios.each{|gpio| io.soft_pwm_write(gpio, 0)}
-    end
-
-
-    def self.color_name_to_flash(io, led, color_name)
-      c = color_name.to_color.rgb
-      (0..2).each do |i|
-        io.soft_pwm_write(led[i], c[i])
-      end
-    end
 
     def self.check
       io = WiringPi::GPIO.new
@@ -107,20 +105,6 @@ module Patlite
       @leds.flatten.each do |gpio|
         io.pin_mode(gpio, WiringPi::OUTPUT)
         io.digital_write(gpio, 0)
-      end
-    end
-
-    def self.rotate(rotate_num = 20, duration = 0.025)
-      io = WiringPi::GPIO.new
-      @leds.each do |led|
-        led.each{|gpio| io.soft_pwm_create(gpio, 0, 255)}
-      end
-      rotate_num.times do
-        @leds.each do |led|
-          color_name_to_flash(io, led, 'Red')
-          sleep duration
-          color_name_to_flash(io, led, 'Black')
-        end
       end
     end
 
