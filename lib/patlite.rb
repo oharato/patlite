@@ -9,72 +9,72 @@ require './patlite/jsay'
 require './patlite/input'
 require 'thread'
 
-# $is_flash = false
+set :environment, :production
+set :port, 80
 
-  get '/' do
-    haml :index
+get '/' do
+  haml :index
+end
+
+get '/flash' do
+  t1 = Thread.new do
+    Patlite::Led.rotate
   end
-
-  get '/flash' do
-    t1 = Thread.new do
-      # $is_flash = true
-      Patlite::Led.rotate
-    end
-    t2 = Thread.new do
-      Patlite::Input.wait_input(t1)
-    end
-    t1.join
-    t2.join
-    Patlite::Led.all_off
-    haml :index
+  t2 = Thread.new do
+    Patlite::Input.wait_input(t1)
   end
+  t1.join
+  t2.join
+  Patlite::Led.all_off
+  haml :index
+end
 
-  get '/colorful' do
-    Patlite::Led.colorful
-    haml :index
+get '/colorful' do
+  Patlite::Led.colorful
+  haml :index
+end
+
+get '/light' do
+  Patlite::Led.light params[:color]
+  haml :index
+end
+
+get '/stop' do
+  $is_flash = false
+  haml :index
+end
+
+get '/say' do
+  if params[:voice] == "show"
+    Patlite::Jsay.say_show params[:message]
+  else
+    Patlite::Jsay.say params[:message]
   end
+  haml :index
+end
 
-  get '/light' do
-    Patlite::Led.light params[:color]
-    haml :index
+get '/alert' do
+  t1 = Thread.new do
+    Patlite::Led.rotate(40, 0.05)
   end
-
-  get '/stop' do
-    $is_flash = false
-    haml :index
-  end
-
-  get '/say' do
-    if params[:voice] == "show"
-      Patlite::Jsay.say_show params[:message]
-    else
-      Patlite::Jsay.say params[:message]
-    end
-    haml :index
-  end
-
-  get '/alert' do
-    t1 = Thread.new do
-      Patlite::Led.rotate(40, 0.05)
-    end
-    t2 = Thread.new do
-      3.times do
-        `aplay ./patlite/Siren_Noise.wav`
-        if params[:voice] == "show"
-          Patlite::Jsay.say_show params[:message]
-        else
-          Patlite::Jsay.say params[:message]
-        end
+  t2 = Thread.new do
+    3.times do
+      `aplay ./patlite/Siren_Noise.wav`
+      if params[:voice] == "show"
+        Patlite::Jsay.say_show params[:message]
+      else
+        Patlite::Jsay.say params[:message]
       end
     end
-    t3 = Thread.new do
-      Patlite::Input.wait_input([t1,t2])
-    end
-    t1.join
-    t2.join
-    t3.join
-    Patlite::Led.all_off
-    haml :index
-
   end
+  t3 = Thread.new do
+    Patlite::Input.wait_input([t1,t2])
+  end
+  t1.join
+  t2.join
+  t3.join
+  Patlite::Led.all_off
+  haml :index
+
+end
 
