@@ -59,6 +59,11 @@ end
 
 get '/alert' do
   t1 = Thread.new do
+    while
+      Patlite::Led.rotate(1, 0.05)
+    end
+  end
+  t2 = Thread.new do
     3.times do
       system 'aplay ./patlite/Siren_Noise.wav'
       if params[:voice] == "show"
@@ -67,14 +72,10 @@ get '/alert' do
         Patlite::Jsay.say params[:message]
       end
     end
-  end
-  t2 = Thread.new do
-    while !t1.stop?
-      Patlite::Led.rotate(5, 0.05)
-    end
+    t1.kill
   end
   t3 = Thread.new do
-    Patlite::Input.wait_input([t1])
+    Patlite::Input.wait_input([t1, t2])
   end
   t1.join
   t2.join
