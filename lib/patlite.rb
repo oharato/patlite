@@ -77,7 +77,6 @@ get '/alert' do
   t3 = Thread.new do
     Patlite::Input.wait_input([t1, t2])
   end
-  t1.join
   t2.join
   t3.kill
   Patlite::Led.all_off
