@@ -15,6 +15,7 @@ module Patlite
           array_thread.each(&:kill)
           break
         end
+        sleep 0.2
       end
 
     end
