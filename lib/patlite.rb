@@ -35,10 +35,11 @@ get '/colorful' do
 end
 
 get '/light' do
-  Patlite::Led.light params[:color]
-rescue => e
+  begin
+    Patlite::Led.light params[:color]
+  rescue => e
 
-end
+  end
   haml :index
 end
 
