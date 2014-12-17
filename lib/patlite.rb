@@ -70,11 +70,11 @@ get '/alert' do
   end
   t2 = Thread.new do
     while !t1.stop?
-      Patlite::Led.rotate(1, 0.05)
+      Patlite::Led.rotate(5, 0.05)
     end
   end
   t3 = Thread.new do
-    Patlite::Input.wait_input([t1,t2])
+    Patlite::Input.wait_input([t1])
   end
   t1.join
   t2.join
