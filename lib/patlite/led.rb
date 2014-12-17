@@ -55,8 +55,10 @@ module Patlite
     def self.light(color)
       io = WiringPi::GPIO.new
       @gpios.each{|gpio| io.soft_pwm_create(gpio, 0, 255)}
-      color_name_to_flash(io, color)
-      sleep 3
+      5.times do
+        color_name_to_flash(io, color)
+        sleep 1
+      end
       @gpios.each{|gpio| io.soft_pwm_write(gpio, 0)}
     end
 

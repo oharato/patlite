@@ -58,9 +58,13 @@ require 'thread'
       Patlite::Led.rotate
     end
     t2 = Thread.new do
-      20.times do
-        # `mpg123 ./patlite/Siren_Noise.mp3`
+      5.times do
         `aplay ./patlite/Siren_Noise.wav`
+        if params[:voice] == "show"
+          Patlite::Jsay.say_show params[:message]
+        else
+          Patlite::Jsay.say params[:message]
+        end
       end
     end
     t3 = Thread.new do
