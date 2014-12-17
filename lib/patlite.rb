@@ -36,6 +36,9 @@ end
 
 get '/light' do
   Patlite::Led.light params[:color]
+rescue => e
+
+end
   haml :index
 end
 
