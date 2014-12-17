@@ -55,10 +55,10 @@ require 'thread'
 
   get '/alert' do
     t1 = Thread.new do
-      Patlite::Led.rotate
+      Patlite::Led.rotate(40, 0.05)
     end
     t2 = Thread.new do
-      5.times do
+      3.times do
         `aplay ./patlite/Siren_Noise.wav`
         if params[:voice] == "show"
           Patlite::Jsay.say_show params[:message]
