@@ -15,8 +15,12 @@ module Patlite
       5.times do
         @leds.each do |led|
           color_name_to_flash(io, led, color)
-          sleep 1
         end
+        sleep 1
+        @leds.each do |led|
+          color_name_to_flash(io, led, 'black')
+        end
+        sleep 1
       end
       @leds.flatten.each{|gpio| io.soft_pwm_write(gpio, 0)}
     end
