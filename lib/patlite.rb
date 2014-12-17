@@ -21,7 +21,7 @@ get '/flash' do
     Patlite::Led.rotate
   end
   t2 = Thread.new do
-    Patlite::Input.wait_input(t1)
+    Patlite::Input.wait_input([t1])
   end
   t1.join
   t2.join
