@@ -12,7 +12,7 @@ module Patlite
     def self.light(color)
       io = WiringPi::GPIO.new
       @leds.flatten.each{|gpio| io.soft_pwm_create(gpio, 0, 255)}
-      5.times do
+      3.times do
         @leds.each do |led|
           color_name_to_flash(io, led, color)
         end
