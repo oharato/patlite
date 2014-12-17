@@ -1,21 +1,22 @@
-%a{href: "/"}
-  %h1 Raspberry Piでパトランプ
-%hr
-%form{action: "/alert", method: "get"}
-  .form-group
-    %label{for: "message"} アラート
-    %textarea#memo.form-control{ rows: 5, placeholder: "メッセージ", name: "message"}
-    %p.control-label 声質
-    .radio-inline
-      %input{type: "radio", value: "", name: "voice", id: "woman", checked: "checked"}
-      %label{for: "woman"} 女性
-    .radio-inline
-      %input{type: "radio", value: "show", name: "voice", id: "show"}
-      %label{for: "show"} showくん(モヤさま)
-  %input.btn.btn-primary{type: "submit", value: "send"}
-%hr
-%form{action: "/light", method: "get"}
-  .form-group
-    %label{for: "color"} 色
-    %textarea#memo.form-control{ rows: 5, placeholder: "color's name", name: "color"}
-  %input.btn.btn-primary{type: "submit", value: "send"}
+.wrapper{style: "margin: 0px auto;max-width:900px;"}
+  %a{href: "/"}
+    %h1 Raspberry Piでパトランプ
+  %hr
+  %form{action: "/alert", method: "get"}
+    .form-group
+      %label{for: "message"} アラート
+      %textarea#memo.form-control{ rows: 5, placeholder: "メッセージ", name: "message"}
+      %p.control-label 声質
+      .radio-inline
+        %input{type: "radio", value: "", name: "voice", id: "woman", checked: "checked"}
+        %label{for: "woman"} 女性
+      .radio-inline
+        %input{type: "radio", value: "show", name: "voice", id: "show"}
+        %label{for: "show"} showくん(モヤさま)
+    %input.btn.btn-primary{type: "submit", value: "send"}
+  %hr
+  %form{action: "/light", method: "get"}
+    .form-group
+      %label{for: "color"} 色
+      %input#color.form-control{ type: "text", placeholder: "color's name", name: "color"}
+    %input.btn.btn-primary{type: "submit", value: "send"}
