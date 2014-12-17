@@ -4,8 +4,8 @@ module Patlite
   class Jsay
 
     def self.say(message)
-      command = "/home/pi/jsay.sh #{message.shellescape}"
-      `#{command}`
+      command = "/home/pi/jsay.sh #{message}"
+      system "#{command}"
     end
 
     def self.say_show(message)
