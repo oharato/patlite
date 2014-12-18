@@ -15,8 +15,8 @@
         %input#woman{type: "radio", value: "", name: "voice", checked: "checked"}
       - @speakers.each do |s|
         .radio-inline
-          %label{for: s} = s
-          %input{id: s, type: "radio", value: s, name: "voice"}
+          %label{for: "#{s}"} = s
+          %input{id: "#{s}", type: "radio", value: "#{s}", name: "voice"}
     %input.btn.btn-primary{type: "submit", value: "say"}
   %hr
   %form{action: "/alert", method: "get"}
