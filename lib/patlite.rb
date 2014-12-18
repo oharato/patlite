@@ -70,17 +70,7 @@ get '/alert' do
   end
   t2 = Thread.new do
     begin
-      3.times do
-        `aplay ./patlite/Siren_Noise.wav`
-      end
-
-      if params[:voice] == "show"
-        Patlite::Jsay.say_show params[:message]
-      else
-        Patlite::Jsay.say params[:message]
-      end
-
-      3.times do
+      5.times do
         `aplay ./patlite/Siren_Noise.wav`
       end
         p "thread2"
