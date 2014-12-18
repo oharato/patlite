@@ -16,6 +16,58 @@ get '/' do
   haml :index
 end
 
+get '/say' do
+  if params[:voice] == "show"
+    Patlite::Jsay.say_show params[:message]
+  else
+    Patlite::Jsay.say params[:message]
+  end
+  haml :index
+end
+
+get '/alert' do
+  t1 = Thread.new do
+    while
+      Patlite::Led.rotate(4, 0.05)
+    end
+  end
+
+  t2 = Thread.new do
+`
+for i in \`seq 3\`
+do
+aplay ./patlite/Siren_Noise.wav
+done
+`
+  if params[:voice] == "show"
+    Patlite::Jsay.say_show params[:message]
+  else
+    Patlite::Jsay.say params[:message]
+  end
+
+`
+for i in \`seq 3\`
+do
+aplay ./patlite/Siren_Noise.wav
+done
+`
+  t1.kill
+  end
+
+  t2.join
+  haml :index
+
+end
+
+get '/light' do
+  begin
+    Patlite::Led.light params[:color]
+  rescue => e
+
+  end
+  haml :index
+end
+
 get '/flash' do
   t1 = Thread.new do
     Patlite::Led.rotate
@@ -29,83 +81,18 @@ get '/flash' do
   haml :index
 end
 
-get '/colorful' do
-  Patlite::Led.colorful
+get '/check' do
+  Patlite::Led.check
   haml :index
 end
 
-get '/light' do
-  begin
-    Patlite::Led.light params[:color]
-  rescue => e
-
-  end
+get '/all_on' do
+  Patlite::Led.all_on
   haml :index
 end
 
-get '/stop' do
-  $is_flash = false
-  haml :index
-end
-
-get '/say' do
-  if params[:voice] == "show"
-    Patlite::Jsay.say_show params[:message]
-  else
-    Patlite::Jsay.say params[:message]
-  end
-  haml :index
-end
-
-get '/alert' do
-  # t1 = Thread.new do
-  #   begin
-  #     while
-  #       Patlite::Led.rotate(1, 0.05)
-  #       p "thread1"
-  #     end
-  #   ensure
-  #     p "thread1 killed"
-  #   end
-  # end
-  # t2 = Thread.new do
-  #   begin
-      3.times do
-        `aplay ./patlite/Siren_Noise.wav`
-        Patlite::Led.rotate(1, 0.05)
-      end
-
-      if params[:voice] == "show"
-        Patlite::Jsay.say_show params[:message]
-      else
-        Patlite::Jsay.say params[:message]
-      end
-
-      3.times do
-        `aplay ./patlite/Siren_Noise.wav`
-        Patlite::Led.rotate(1, 0.05)
-      end
-
-  #       p "thread2"
-  #   ensure
-  #     # t1.kill
-  #     p "thread2 killed"
-  #   end
-  # end
-  # t3 = Thread.new do
-  #   begin
-  #     Patlite::Input.wait_input([t1, t2])
-  #     p "thread3"
-  #   ensure
-  #     p "thread3 killed"
-  #   end
-  # end
-  # t2.join
-  # t1.kill
-  # t3.kill
-  # p Thread.list
+get '/all_off' do
   Patlite::Led.all_off
   haml :index
-
 end
 
