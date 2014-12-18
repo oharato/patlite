@@ -4,7 +4,7 @@ module Patlite
   class Jsay
 
     def self.say(message, speaker)
-      if speaker.nil?
+      if speaker.blank?
         command = "./patlite/jsay.sh #{message}"
         `#{command}`
       else
