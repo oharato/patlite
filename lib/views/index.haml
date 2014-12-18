@@ -16,7 +16,7 @@
       - @speakers.each do |s|
         .radio-inline
           %input{id: "#{s}", type: "radio", value: "#{s}", name: "voice"}
-          %label{for: "#{s}"}= s
+          %label{for: = s}= s
     %input.btn.btn-primary{type: "submit", value: "say"}
   %hr
   %form{action: "/alert", method: "get"}
