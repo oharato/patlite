@@ -64,15 +64,18 @@ get '/alert' do
     end
   end
   t2 = Thread.new do
-    3.times do
-      system 'aplay ./patlite/Siren_Noise.wav'
-      if params[:voice] == "show"
-        Patlite::Jsay.say_show params[:message]
-      else
-        Patlite::Jsay.say params[:message]
+    begin
+      3.times do
+        system 'aplay ./patlite/Siren_Noise.wav'
+        if params[:voice] == "show"
+          Patlite::Jsay.say_show params[:message]
+        else
+          Patlite::Jsay.say params[:message]
+        end
       end
+    ensure
+      t1.kill
     end
-    t1.kill
   end
   t3 = Thread.new do
     Patlite::Input.wait_input([t1, t2])
