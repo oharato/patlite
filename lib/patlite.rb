@@ -89,6 +89,7 @@ get '/alert' do
   end
   t2.join
   t3.kill
+  Thread.list
   Patlite::Led.all_off
   haml :index
 
