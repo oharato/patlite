@@ -58,38 +58,40 @@ get '/say' do
 end
 
 get '/alert' do
-  t1 = Thread.new do
-    begin
-      while
+  # t1 = Thread.new do
+  #   begin
+  #     while
+  #       Patlite::Led.rotate(1, 0.05)
+  #       p "thread1"
+  #     end
+  #   ensure
+  #     p "thread1 killed"
+  #   end
+  # end
+  # t2 = Thread.new do
+  #   begin
+      3.times do
+        `aplay ./patlite/Siren_Noise.wav`
         Patlite::Led.rotate(1, 0.05)
-        p "thread1"
-      end
-    ensure
-      p "thread1 killed"
-    end
-  end
-  t2 = Thread.new do
-    begin
-      3.times do
-        `aplay ./patlite/Siren_Noise.wav`
       end
 
-      # if params[:voice] == "show"
-      #   Patlite::Jsay.say_show params[:message]
-      # else
-      #   Patlite::Jsay.say params[:message]
-      # end
+      if params[:voice] == "show"
+        Patlite::Jsay.say_show params[:message]
+      else
+        Patlite::Jsay.say params[:message]
+      end
 
       3.times do
         `aplay ./patlite/Siren_Noise.wav`
+        Patlite::Led.rotate(1, 0.05)
       end
 
-        p "thread2"
-    ensure
-      # t1.kill
-      p "thread2 killed"
-    end
-  end
+  #       p "thread2"
+  #   ensure
+  #     # t1.kill
+  #     p "thread2 killed"
+  #   end
+  # end
   # t3 = Thread.new do
   #   begin
   #     Patlite::Input.wait_input([t1, t2])
@@ -98,10 +100,10 @@ get '/alert' do
   #     p "thread3 killed"
   #   end
   # end
-  t2.join
-  t1.kill
+  # t2.join
+  # t1.kill
   # t3.kill
-  p Thread.list
+  # p Thread.list
   Patlite::Led.all_off
   haml :index
 
