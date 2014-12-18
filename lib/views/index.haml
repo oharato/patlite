@@ -23,7 +23,8 @@
       %label{for: "color"} 色名
       %input#color.form-control{ type: "text", placeholder: "color's name", name: "color"}
     %input.btn.btn-primary{type: "submit", value: "send"}
-- colors = %W(AliceBlue AntiqueWhite Aqua Aquamarine Azure Beige Bisque)
-- colors.each do |c|
-  %a.btn.btn-default{href: "/#{c}"}
-    = c
+  %hr
+  - #colors = %W(AliceBlue AntiqueWhite Aqua Aquamarine Azure Beige Bisque)
+  - @colors.each do |c|
+    %a.btn.btn-default{href: "/light?color=#{c}"}
+      = c
