@@ -1,5 +1,5 @@
 .wrapper{style: "margin: 0 auto 10px;max-width:900px;"}
-  %a{href: "/"}
+  %a{href: "/", style: "text-decoration: none;"}
     %h1 Raspberry Piでパトランプ
   %hr
   %a.btn.btn-danger{href: "/flash"}
@@ -16,7 +16,7 @@
       - @speakers.each do |s|
         .radio-inline
           %label{for: s} = s
-          %input#= s{type: "radio", value: s, name: "voice"}
+          %input{id: s, type: "radio", value: s, name: "voice"}
     %input.btn.btn-primary{type: "submit", value: "say"}
   %hr
   %form{action: "/alert", method: "get"}
