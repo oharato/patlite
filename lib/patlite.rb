@@ -41,7 +41,7 @@ get '/alert' do
         done
       EOS
 
-      `#{command} `
+      `#{command}`
 
       if params[:voice] == "show"
         Patlite::Jsay.say_show params[:message]
@@ -49,7 +49,7 @@ get '/alert' do
         Patlite::Jsay.say params[:message]
       end
 
-      `#{command} `
+      `#{command}`
     ensure
       t1.kill
     end
