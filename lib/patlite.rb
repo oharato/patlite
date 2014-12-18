@@ -33,28 +33,35 @@ get '/alert' do
   end
 
   t2 = Thread.new do
-`
-for i in \`seq 3\`
-do
-aplay ./patlite/Siren_Noise.wav
-done
-`
-  if params[:voice] == "show"
-    Patlite::Jsay.say_show params[:message]
-  else
-    Patlite::Jsay.say params[:message]
+    begin
+      command = <<-"EOS"
+        for i in \`seq 3\`
+        do
+        aplay ./patlite/Siren_Noise.wav
+        done
+      EOS
+
+      `#{command} `
+
+      if params[:voice] == "show"
+        Patlite::Jsay.say_show params[:message]
+      else
+        Patlite::Jsay.say params[:message]
+      end
+
+      `#{command} `
+    ensure
+      t1.kill
+    end
   end
 
-`
-for i in \`seq 3\`
-do
-aplay ./patlite/Siren_Noise.wav
-done
-`
-  t1.kill
+  t3 = Thread.new do
+    Patlite::Input.wait_input([t2])
   end
 
   t2.join
+  t3.kill
+  Patlite::Led.all_off
   haml :index
 
 end
