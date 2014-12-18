@@ -8,7 +8,7 @@
   %form{action: "/alert", method: "get"}
     .form-group
       %label{for: "message"} アラート
-      %input#message.form-control{ type: "text", placeholder: "メッセージ", name: "message", value: #{@message}}
+      %input#message.form-control{ type: "text", placeholder: "メッセージ", name: "message", value: @message}
       %p.control-label 声質
       .radio-inline
         %input{type: "radio", value: "", name: "voice", id: "woman", checked: "checked"}
@@ -21,7 +21,7 @@
   %form{action: "/light", method: "get"}
     .form-group
       %label{for: "color"} 色名
-      %input#color.form-control{ type: "text", placeholder: "color's name", name: "color", value: #{@color}}
+      %input#color.form-control{ type: "text", placeholder: "color's name", name: "color", value: @color}
     %input.btn.btn-primary{type: "submit", value: "送信"}
   %hr
   - #colors = %W(AliceBlue AntiqueWhite Aqua Aquamarine Azure Beige Bisque)
