@@ -5,7 +5,7 @@ module Patlite
 
     def self.say(message)
       command = "./patlite/jsay.sh #{message}"
-      system "#{command}"
+      `#{command}`
     end
 
     def self.say_show(message)
