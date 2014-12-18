@@ -25,5 +25,5 @@
     %input.btn.btn-primary{type: "submit", value: "send"}
 - colors = %W(AliceBlue AntiqueWhite Aqua Aquamarine Azure Beige Bisque)
 - colors.each do |c|
-  %a{href: "/=c"}
+  %a.btn.btn-default{href: "/#{c}"}
     = c
