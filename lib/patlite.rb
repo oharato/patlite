@@ -34,7 +34,6 @@ get '/alert' do
 
   t2 = Thread.new do
     begin
-      3.times do
         command = <<-"EOS"
           for i in \`seq 3\`
           do
@@ -49,7 +48,6 @@ get '/alert' do
         else
           Patlite::Jsay.say params[:message]
         end
-      end
     ensure
       t1.kill
     end
