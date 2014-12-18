@@ -58,11 +58,9 @@
 3. Lチカ
 4. しゃべらせてみる
 5. Webインターフェース付きパトライトを作る
-<hr>
-6. チャット
-7. シリアル通信でフルカラーLEDをたくさん光らせる
-8. ケースを作ろう
-8. まとめ
+6. ケースを自作する
+7. 今後の展開
+8. Special Thanks
 
 ---
 
@@ -325,20 +323,14 @@ $ sudo apt-get install avahi-daemon
 
 ##その他の設定
 - アップグレード
-
-```
-$ sudo apt-get upgrade
-```
-
 - 再起動
-
-```
-$ sudo reboot
-```
-
 - シャットダウン
 
 ```
+$ sudo apt-get upgrade
+
+$ sudo reboot
+
 $ sudo halt
 ```
 
@@ -702,60 +694,69 @@ io.soft_pwm_write(gpio, value)
 ---
 
 ##必要なもの
-- アイロンビーズ
-- アイロンビーズボード
-- ピンセット
-- アイロン
-- アイロンペーパー
+
+
+||||
+|:-:|:-:|:-:|
+|a|![](img/perlarbeads_plate.jpg)|c|
+|アイロンビーズ|アイロンビーズボード|ピンセット|
+|a|b|c|
+|アイロン|アイロンペーパー||
+
 
 ---
 
-```
-ここにファミコンがあるじゃろ？
+##作り方
+- 展開図を想像する。コードの差し込み穴などの位置に注意。
+- ボード上にビーズを並べる
+- アイロンペーパーをのせてアイロンをかける
+- パーツを組み立てる
+- 完成！
 
- ( ＾ω＾)
- ⊃ファミコン⊂
+---
 
- これをディスクシステムと合わせて…
+##その他
+- 展開図をgithubで公開予定。
+- 日経BP主催の「[みんなのラズパイコンテスト](http://coin.nikkeibp.co.jp/coin/itpro-s/seminar/LIN/rpic15/)」に応募したところ、佳作として入賞。12/24にサイトで受賞発表らしい。
 
- ( ＾ω＾)
- ≡⊃⊂≡
+---
 
- ( ＾ω＾)
- ⊃ツインファミコン⊂
+#今後の展開
 
- 出来上がりじゃ…
-```
+---
+
+##チャット
+- Websocketを使ってチャットアプリを作り、メッセージ内のキーワードに反応して音を出したり光ったり。
+##シリアル通信でフルカラーLEDをたくさん光らせる
+- 今回使ったフルカラーLEDは1個で3つのGPIOピンを消費
+- シリアル接続のフルカラーLED
 
 ---
 
 #Special Thanks
 ## github
 - ソース置き場
-  - 自宅のWindowsデスクトップまたはMacbookで開発→Raspberry Piでgit pull
+  - https://github.com/oharato/patlite
+  - 自宅のWindowsデスクトップまたはMacbookで開発、git push
+  - Raspberry Piでgit pull
 - 静的ページ置き場
-  - gh-pagesブランチを作ると勝手にhttp://account-name.github.io/project-nameにページができる
+  - http://oharato.github.io/patlite
+  - gh-pagesブランチを作ると勝手に `http://account-name.github.io/project-name` にページができる
 
 ---
 
 ## reveal.js
 - このスライドのテンプレート
-- Markdown形式でいい感じに書ける
+  - Markdown形式でいい感じに書ける
 
 ```
 ## reveal.js
 - このスライドのテンプレート
-- Markdown形式でいい感じに書ける
+  - Markdown形式でいい感じに書ける
 
 ```
 
 ---
-
-## Nitrous.io, cloud9.io
-- オンライン開発環境
-
----
-
 
 ##fritzing
 - オープンソースの電子回路図作成ツール(Win,Mac,Linux)
@@ -768,6 +769,22 @@ io.soft_pwm_write(gpio, value)
 ##電子部品屋
 - 秋月電子通商
 - 千石電商
+
+<div>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6480.380852144076!2d139.76834822452125!3d35.69693129141863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188c1c50e82da1%3A0x8c9f92b0638e1f84!2z77yI5qCq77yJ56eL5pyI6Zu75a2Q6YCa5ZWG!5e0!3m2!1sja!2sjp!4v1418879904697" width="600" height="450" frameborder="0" style="border:0"></iframe>
+</div>
+
+---
+
+#まとめ
+1. Raspberry Piとは？
+2. Raspberry Piのセットアップ
+3. Lチカ
+4. しゃべらせてみる
+5. Webインターフェース付きパトライトを作る
+6. ケースを自作する
+7. 今後の展開
+8. Special Thanks
 
 ---
 
