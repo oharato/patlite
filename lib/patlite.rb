@@ -15,7 +15,7 @@ set :port, 80
 before do
   @colors = []
   c = Color.new :alice_blue
-  10.times do
+  100.times do
     @colors << c.name
     c = c.next
   end
