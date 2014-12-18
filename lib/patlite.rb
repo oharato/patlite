@@ -19,6 +19,9 @@ before do
     @colors << c.name
     c = c.next
   end
+
+  @message = params[:message]
+  @color = params[:color]
 end
 
 get '/' do
