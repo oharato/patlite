@@ -84,16 +84,16 @@ get '/alert' do
       p "thread2 killed"
     end
   end
-  t3 = Thread.new do
-    begin
-      Patlite::Input.wait_input([t1, t2])
-      p "thread3"
-    ensure
-      p "thread3 killed"
-    end
-  end
+  # t3 = Thread.new do
+  #   begin
+  #     Patlite::Input.wait_input([t1, t2])
+  #     p "thread3"
+  #   ensure
+  #     p "thread3 killed"
+  #   end
+  # end
   t2.join
-  t3.kill
+  # t3.kill
   Patlite::Led.all_off
   haml :index
 
