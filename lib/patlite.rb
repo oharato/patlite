@@ -34,22 +34,22 @@ get '/alert' do
 
   t2 = Thread.new do
     begin
-      command = <<-"EOS"
-        for i in \`seq 3\`
-        do
-        aplay ./patlite/Siren_Noise.wav
-        done
-      EOS
+      3.times
+        command = <<-"EOS"
+          for i in \`seq 3\`
+          do
+          aplay ./patlite/Siren_Noise.wav
+          done
+        EOS
 
-      `#{command}`
+        `#{command}`
 
-      if params[:voice] == "show"
-        Patlite::Jsay.say_show params[:message]
-      else
-        Patlite::Jsay.say params[:message]
+        if params[:voice] == "show"
+          Patlite::Jsay.say_show params[:message]
+        else
+          Patlite::Jsay.say params[:message]
+        end
       end
-
-      `#{command}`
     ensure
       t1.kill
     end
