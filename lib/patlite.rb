@@ -59,8 +59,13 @@ end
 
 get '/alert' do
   t1 = Thread.new do
-    while
-      Patlite::Led.rotate(1, 0.05)
+    begin
+      while
+        Patlite::Led.rotate(1, 0.05)
+        p "thread1"
+      end
+    ensure
+      p "thread1 killed"
     end
   end
   t2 = Thread.new do
@@ -72,13 +77,20 @@ get '/alert' do
         else
           Patlite::Jsay.say params[:message]
         end
+        p "thread2"
       end
     ensure
       t1.kill
+      p "thread2 killed"
     end
   end
   t3 = Thread.new do
-    Patlite::Input.wait_input([t1, t2])
+    begin
+      Patlite::Input.wait_input([t1, t2])
+      p "thread3"
+    ensure
+      p "thread3 killed"
+    end
   end
   t2.join
   t3.kill
