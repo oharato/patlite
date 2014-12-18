@@ -16,7 +16,7 @@
       - @speakers.each do |s|
         .radio-inline
           %input{id: "#{s}", type: "radio", value: "#{s}", name: "voice"}
-          %label{for: = s}= s
+          %label{for: "#{s}"}= s
     %input.btn.btn-primary{type: "submit", value: "say"}
   %hr
   %form{action: "/alert", method: "get"}
@@ -25,11 +25,12 @@
       %input#message2.form-control{ type: "text", placeholder: "メッセージ", name: "message", value: @message}
       %p.control-label 声質
       .radio-inline
-        %input{type: "radio", value: "", name: "voice", id: "woman2", checked: "checked"}
+        %input#woman2{type: "radio", value: "", name: "voice", checked: "checked"}
         %label{for: "woman2"} 女性
-      .radio-inline
-        %input{type: "radio", value: "show", name: "voice", id: "show2"}
-        %label{for: "show2"} showくん(モヤモヤさまぁ～ず)
+      - @speakers.each do |s|
+        .radio-inline
+          %input{id: "#{s}2", type: "radio", value: "#{s}", name: "voice"}
+          %label{for: "#{s}2"}= s
     %input.btn.btn-danger{type: "submit", value: "alert"}
   %hr
   %form{action: "/light", method: "get"}
