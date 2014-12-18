@@ -20,15 +20,15 @@
   %hr
   %form{action: "/alert", method: "get"}
     .form-group
-      %label{for: "message"} アラート
-      %input#message.form-control{ type: "text", placeholder: "メッセージ", name: "message", value: @message}
+      %label{for: "message2"} アラート
+      %input#message2.form-control{ type: "text", placeholder: "メッセージ", name: "message", value: @message}
       %p.control-label 声質
       .radio-inline
-        %input{type: "radio", value: "", name: "voice", id: "woman", checked: "checked"}
-        %label{for: "woman"} 女性
+        %input{type: "radio", value: "", name: "voice", id: "woman2", checked: "checked"}
+        %label{for: "woman2"} 女性
       .radio-inline
-        %input{type: "radio", value: "show", name: "voice", id: "show"}
-        %label{for: "show"} showくん(モヤモヤさまぁ～ず)
+        %input{type: "radio", value: "show", name: "voice", id: "show2"}
+        %label{for: "show2"} showくん(モヤモヤさまぁ～ず)
     %input.btn.btn-danger{type: "submit", value: "alert"}
   %hr
   %form{action: "/light", method: "get"}
