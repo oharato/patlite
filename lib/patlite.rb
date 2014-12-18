@@ -71,29 +71,34 @@ get '/alert' do
   t2 = Thread.new do
     begin
       3.times do
-        system 'aplay ./patlite/Siren_Noise.wav'
-        if params[:voice] == "show"
-          Patlite::Jsay.say_show params[:message]
-        else
-          Patlite::Jsay.say params[:message]
-        end
-        p "thread2"
+        `aplay ./patlite/Siren_Noise.wav`
       end
+
+      if params[:voice] == "show"
+        Patlite::Jsay.say_show params[:message]
+      else
+        Patlite::Jsay.say params[:message]
+      end
+
+      3.times do
+        `aplay ./patlite/Siren_Noise.wav`
+      end
+        p "thread2"
     ensure
       t1.kill
       p "thread2 killed"
     end
   end
-  # t3 = Thread.new do
-  #   begin
-  #     Patlite::Input.wait_input([t1, t2])
-  #     p "thread3"
-  #   ensure
-  #     p "thread3 killed"
-  #   end
-  # end
+  t3 = Thread.new do
+    begin
+      Patlite::Input.wait_input([t1, t2])
+      p "thread3"
+    ensure
+      p "thread3 killed"
+    end
+  end
   t2.join
-  # t3.kill
+  t3.kill
   Patlite::Led.all_off
   haml :index
 
