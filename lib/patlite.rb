@@ -12,11 +12,13 @@ require 'thread'
 set :environment, :production
 set :port, 80
 
-@colors = []
-c = Color.new :alice_blue
-10.times do
-  @colors << c.name
-  c = c.next
+before do
+  @colors = []
+  c = Color.new :alice_blue
+  10.times do
+    @colors << c.name
+    c = c.next
+  end
 end
 
 get '/' do
