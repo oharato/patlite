@@ -2,21 +2,28 @@
   %a{href: "/"}
     %h1 Raspberry Piでパトランプ
   %hr
+  %a.btn.btn-danger{href: "/flash"}
+    flash
+  %hr
   %form{action: "/alert", method: "get"}
     .form-group
       %label{for: "message"} アラート
-      %textarea#memo.form-control{ rows: 5, placeholder: "メッセージ", name: "message"}
+      %input#message.form-control{ type: "text", placeholder: "メッセージ", name: "message"}
       %p.control-label 声質
       .radio-inline
         %input{type: "radio", value: "", name: "voice", id: "woman", checked: "checked"}
         %label{for: "woman"} 女性
       .radio-inline
         %input{type: "radio", value: "show", name: "voice", id: "show"}
-        %label{for: "show"} showくん(モヤさま)
+        %label{for: "show"} showくん(モヤモヤさまぁ～ず)
     %input.btn.btn-primary{type: "submit", value: "send"}
   %hr
   %form{action: "/light", method: "get"}
     .form-group
-      %label{for: "color"} 色
+      %label{for: "color"} 色名
       %input#color.form-control{ type: "text", placeholder: "color's name", name: "color"}
     %input.btn.btn-primary{type: "submit", value: "send"}
+- colors = %W(AliceBlue AntiqueWhite Aqua Aquamarine Azure Beige Bisque)
+- colors.each do |c|
+  %a{href: "/=c"}
+    = c
