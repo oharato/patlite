@@ -695,13 +695,15 @@ io.soft_pwm_write(gpio, value)
 
 ##必要なもの
 
+![](img/perlarbeads.jpg)
+![](img/perlarbeads_plate.jpg)
+![](img/tweezers.jpg)
 
-||||
-|:-:|:-:|:-:|
-|a|![](img/perlarbeads_plate.jpg)|c|
-|アイロンビーズ|アイロンビーズボード|ピンセット|
-|a|b|c|
-|アイロン|アイロンペーパー||
+- アイロンビーズ
+- アイロンビーズボード
+- ピンセット
+- アイロン
+- アイロンペーパー
 
 
 ---
@@ -710,8 +712,18 @@ io.soft_pwm_write(gpio, value)
 - 展開図を想像する。コードの差し込み穴などの位置に注意。
 - ボード上にビーズを並べる
 - アイロンペーパーをのせてアイロンをかける
+
+![](img/case01.png)
+
+---
+
+##作り方
 - パーツを組み立てる
 - 完成！
+
+![](img/case02.png)
+![](img/case03.png)
+
 
 ---
 
@@ -727,9 +739,15 @@ io.soft_pwm_write(gpio, value)
 
 ##チャット
 - Websocketを使ってチャットアプリを作り、メッセージ内のキーワードに反応して音を出したり光ったり。
-##シリアル通信でフルカラーLEDをたくさん光らせる
+
+---
+
+## シリアル通信でフルカラーLEDをたくさん光らせる
 - 今回使ったフルカラーLEDは1個で3つのGPIOピンを消費
 - シリアル接続のフルカラーLED
+  - 端子は電源、入力信号、出力信号、GNDの４本
+
+![](img/8LED.jpg)
 
 ---
 
@@ -794,11 +812,17 @@ io.soft_pwm_write(gpio, value)
 
 			</div>
 
+      <div class='footer'>
+        <span class="slidenumber"></span>
+        <span id="runner_btn"><span id="runner"></span></span>
+      </div>
+
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.min.js"></script>
-
+    <script src="js/jquery-2.1.3.min.js" type="text/javascript"></script>
+    <script src="js/jquery.runner.js" type="text/javascript"></script>
 		<script>
 
 			// Full list of configuration options available here:
@@ -828,6 +852,41 @@ io.soft_pwm_write(gpio, value)
 					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
 				]
 			});
+$(function(){
+    $('#runner').runner();
+    // $('#runner_btn').click(function() {
+    //     $('#runner').runner('start');
+    // });
+    $(window).keyup(function(e){
+      // z key
+      if(e.keyCode == 90){ $('#runner').runner('toggle')}
+    });
+
+});
+
+function slidenumber(event){
+  var totalslides = document.querySelectorAll( '.reveal .slides section:not(.stack)' ).length;
+  var current_slide = 0;
+
+  var horizontal_slides = document.querySelectorAll( '.reveal .slides>section' );
+  for (var i = 0; i < event.indexh; i++) {
+    // get subslides
+    var subslides = horizontal_slides[i].querySelectorAll('section');
+
+    // if subslides.length is 0, add 1 for horizontal slide, else add subslides.length
+    current_slide += (subslides.length === 0) ? 1 : subslides.length;
+  }
+
+  current_slide += event.indexv+1;
+  return current_slide.toString()+"/"+totalslides.toString();
+}
+
+Reveal.addEventListener('slidechanged', function(event){
+  document.querySelector(".slidenumber").innerText=slidenumber(event);
+});
+Reveal.addEventListener('ready', function(event){
+  document.querySelector(".slidenumber").innerText=slidenumber(event);
+});
 
 		</script>
 
