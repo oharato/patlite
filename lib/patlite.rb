@@ -86,7 +86,7 @@ get '/alert' do
 
         p "thread2"
     ensure
-      t1.kill
+      # t1.kill
       p "thread2 killed"
     end
   end
@@ -99,6 +99,7 @@ get '/alert' do
   #   end
   # end
   t2.join
+  t1.kill
   # t3.kill
   p Thread.list
   Patlite::Led.all_off
