@@ -20,6 +20,8 @@ before do
     c = c.next
   end
 
+  @speakers = %w(show haruka hikari takeru santa bear)
+
   @message = params[:message]
   @color = params[:color]
 end
@@ -29,11 +31,7 @@ get '/' do
 end
 
 get '/say' do
-  if params[:voice] == "show"
-    Patlite::Jsay.say_show params[:message]
-  else
-    Patlite::Jsay.say params[:message]
-  end
+  Patlite::Jsay.say(params[:message], params[:voice])
   haml :index
 end
 
@@ -46,20 +44,16 @@ get '/alert' do
 
   t2 = Thread.new do
     begin
-        command = <<-"EOS"
-          for i in \`seq 3\`
-          do
-          aplay ./patlite/Siren_Noise.wav
-          done
-        EOS
+      command = <<-"EOS"
+        for i in \`seq 3\`
+        do
+        aplay ./patlite/Siren_Noise.wav
+        done
+      EOS
 
-        `#{command}`
+      `#{command}`
 
-        if params[:voice] == "show"
-          Patlite::Jsay.say_show params[:message]
-        else
-          Patlite::Jsay.say params[:message]
-        end
+      Patlite::Jsay.say(params[:message], params[:voice])
     ensure
       t1.kill
     end

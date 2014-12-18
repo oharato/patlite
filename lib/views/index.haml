@@ -11,11 +11,14 @@
       %input#message.form-control{ type: "text", placeholder: "メッセージ", name: "message", value: @message}
       %p.control-label 声質
       .radio-inline
-        %input{type: "radio", value: "", name: "voice", id: "woman", checked: "checked"}
-        %label{for: "woman"} 女性
-      .radio-inline
-        %input{type: "radio", value: "show", name: "voice", id: "show"}
-        %label{for: "show"} showくん(モヤモヤさまぁ～ず)
+        %label
+          女性
+          %input{type: "radio", value: "", name: "voice", checked: "checked"}
+      - @speakers.each do |s|
+        .radio-inline
+          %label
+            = s
+            %input{type: "radio", value: s, name: "voice"}
     %input.btn.btn-primary{type: "submit", value: "say"}
   %hr
   %form{action: "/alert", method: "get"}
@@ -37,7 +40,6 @@
       %input#color.form-control{ type: "text", placeholder: "color's name", name: "color", value: @color}
     %input.btn.btn-primary{type: "submit", value: "送信"}
   %hr
-  - #colors = %W(AliceBlue AntiqueWhite Aqua Aquamarine Azure Beige Bisque)
   - @colors.each do |c|
     %a.btn.btn-default{href: "/light?color=#{c}"}
       = c

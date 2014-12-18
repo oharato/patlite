@@ -118,3 +118,6 @@ Raspberry Piに無線LANのUSBアダプタをつける | ものづくりエク�
 Raspberry Piを購入して初期設定 - 河童＠漂流中 http://d.hatena.ne.jp/kappaseijin/20140201/1391244521
 
 Raspberry Piで学ぶ電子工作　超小型コンピュータで電子回路を制御する　サポートページ｜ブルーバックス｜講談社BOOK倶楽部 http://bluebacks.kodansha.co.jp/bsupport/rspi.html
+
+Raspberry Piで「I2C LCD Breakout」を使ってみた！ | スイッチサイエンス マガジン http://mag.switch-science.com/2013/07/30/use-i2c-lcd-brakeout-board-on-raspberry-pi/
+RaspberryPi - Raspberry Pi起動時にwifiに接続し、IPアドレスをLCDに表示させる - Qiita http://qiita.com/kayako/items/74eae5037f219bb4a26a

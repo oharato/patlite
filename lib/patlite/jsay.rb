@@ -3,19 +3,20 @@ require 'shellwords'
 module Patlite
   class Jsay
 
-    def self.say(message)
-      command = "./patlite/jsay.sh #{message}"
-      `#{command}`
-    end
-
-    def self.say_show(message)
-      command = <<"EOS"
+    def self.say(message, speaker)
+      if speaker.nil?
+        command = "./patlite/jsay.sh #{message}"
+        `#{command}`
+      else
+        command = <<"EOS"
 curl "https://api.voicetext.jp/v1/tts" \
  -u "dzywbs4umvr3uw60:" \
  -d "text=#{message}" \
- -d "speaker=show" | aplay -
+ -d "speaker=#{speaker}" | aplay -
 EOS
-      `#{command}`
+        `#{command}`
+      end
     end
+
   end
 end
