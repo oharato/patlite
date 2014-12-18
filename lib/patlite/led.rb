@@ -1,5 +1,6 @@
 require 'wiringpi2'
 require 'colorable'
+include Colorable
 
 module Patlite
   class Led
