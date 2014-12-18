@@ -5,6 +5,19 @@
   %a.btn.btn-danger{href: "/flash"}
     flash
   %hr
+  %form{action: "/say", method: "get"}
+    .form-group
+      %label{for: "message"} しゃべる
+      %input#message.form-control{ type: "text", placeholder: "メッセージ", name: "message", value: @message}
+      %p.control-label 声質
+      .radio-inline
+        %input{type: "radio", value: "", name: "voice", id: "woman", checked: "checked"}
+        %label{for: "woman"} 女性
+      .radio-inline
+        %input{type: "radio", value: "show", name: "voice", id: "show"}
+        %label{for: "show"} showくん(モヤモヤさまぁ～ず)
+    %input.btn.btn-primary{type: "submit", value: "say"}
+  %hr
   %form{action: "/alert", method: "get"}
     .form-group
       %label{for: "message"} アラート
